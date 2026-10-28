@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include "xil_printf.h"
+#include "xil_io.h"
+#include "xparameters.h"
+#include "sleep.h"
+
+// Alamat Base BRAM (Bisa dilihat di xparameters.h, biasanya 0x40000000 atau 0x42000000)
+#define BRAM_BASE_ADDR   XPAR_BRAM_0_BASEADDR
+
+// Jarak antar channel adalah 4 KB (0x1000)
+#define CH_OFFSET(ch)    ((ch) * 0x1000)
+
+int main()
+{
+    init_platform();
+
+    xil_printf("\n\r==========================================\n\r");
+    xil_printf("   EBAZ4205 - 8 CHANNEL UART MONITOR      \n\r");
+    xil_printf("   Memory Map Base: 0x%08X                \n\r", BRAM_BASE_ADDR);
+    xil_printf("==========================================\n\r");
+
+    // Array untuk mencatat posisi pembacaan terakhir CPU tiap channel
+    uint16_t rx_tail_ptr[8] = {0};
+
+    while (1)
+    {
+        // Periksa data masuk di ke-8 channel UART secara bergantian
+        for (int ch = 0; ch < 8; ch++)
+        {
+            uint32_t ch_base = BRAM_BASE_ADDR + CH_OFFSET(ch);
+
+            // 1. Baca Pointer Head yang ditulis oleh hardware FPGA (di offset 0x0FFE)
+            uint16_t head_low  = Xil_In8(ch_base + 0x0FFE);
+            uint16_t head_high = Xil_In8(ch_base + 0x0FFF);
+            uint16_t head_ptr  = (head_high << 8) | head_low;
+
+            // 2. Jika Head != Tail, berarti ada data baru yang masuk dari STM32!
+            if (head_ptr != rx_tail_ptr[ch])
+            {
+                xil_printf("[CH %d]: ", ch);
+
+                // Baca semua byte baru dari BRAM
+                while (rx_tail_ptr[ch] != head_ptr)
+                {
+                    // Baca byte karakter dari buffer data
+                    uint8_t data_char = Xil_In8(ch_base + rx_tail_ptr[ch]);
+
+                    // Cetak karakter (atau ganti dengan fungsi parsing sensor kamu)
+                    outbyte(data_char);
+
+                    // Geser tail (circular 2048 byte)
+                    rx_tail_ptr[ch] = (rx_tail_ptr[ch] + 1) % 2048;
+                }
+                xil_printf("\n\r");
+            }
+        }
+
+        // Delay sangat singkat (1 milidetik) agar loop tidak membakar CPU
+        usleep(1000);
+    }
+
+    cleanup_platform();
+    return 0;
+}
