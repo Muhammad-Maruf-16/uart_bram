@@ -11,7 +11,12 @@ src/main.o src/main.o: ../src/main.c \
  ../../uart8_monitor_bsp/ps7_cortexa9_0/include/xpseudo_asm_gcc.h \
  ../../uart8_monitor_bsp/ps7_cortexa9_0/include/xparameters.h \
  ../../uart8_monitor_bsp/ps7_cortexa9_0/include/sleep.h \
- ../../uart8_monitor_bsp/ps7_cortexa9_0/include/xil_io.h
+ ../../uart8_monitor_bsp/ps7_cortexa9_0/include/xil_io.h \
+ ../../uart8_monitor_bsp/ps7_cortexa9_0/include/xdmaps.h \
+ ../../uart8_monitor_bsp/ps7_cortexa9_0/include/xil_assert.h \
+ ../../uart8_monitor_bsp/ps7_cortexa9_0/include/xstatus.h \
+ ../../uart8_monitor_bsp/ps7_cortexa9_0/include/xdmaps_hw.h \
+ ../../uart8_monitor_bsp/ps7_cortexa9_0/include/xil_cache.h
 
 ../../uart8_monitor_bsp/ps7_cortexa9_0/include/xil_printf.h:
 
@@ -38,3 +43,13 @@ src/main.o src/main.o: ../src/main.c \
 ../../uart8_monitor_bsp/ps7_cortexa9_0/include/sleep.h:
 
 ../../uart8_monitor_bsp/ps7_cortexa9_0/include/xil_io.h:
+
+../../uart8_monitor_bsp/ps7_cortexa9_0/include/xdmaps.h:
+
+../../uart8_monitor_bsp/ps7_cortexa9_0/include/xil_assert.h:
+
+../../uart8_monitor_bsp/ps7_cortexa9_0/include/xstatus.h:
+
+../../uart8_monitor_bsp/ps7_cortexa9_0/include/xdmaps_hw.h:
+
+../../uart8_monitor_bsp/ps7_cortexa9_0/include/xil_cache.h:
