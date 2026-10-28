@@ -1,8 +1,8 @@
-11:05:01 **** Incremental Build of configuration Debug for project uart8_monitor ****
+13:09:50 **** Incremental Build of configuration Debug for project uart8_monitor ****
 make pre-build main-build 
 a9-linaro-pre-build-step
  
 make: Nothing to be done for 'main-build'.
 
-11:05:01 Build Finished (took 277ms)
+13:09:50 Build Finished (took 274ms)
 
