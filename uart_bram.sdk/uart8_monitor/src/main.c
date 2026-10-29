@@ -56,34 +56,33 @@ int Init_DMA_Engine()
     return XST_SUCCESS;
 }
 
+static inline uint32_t BRAM_Read32(uint32_t addr)
+{
+    (void)Xil_In32(addr); // Prime AXI BRAM pipeline
+    return Xil_In32(addr);
+}
+
+static inline uint8_t BRAM_Read8(uint32_t addr)
+{
+    uint32_t word_addr = addr & ~3U;
+    uint32_t byte_lane = addr & 3U;
+    uint32_t word = BRAM_Read32(word_addr);
+    return (uint8_t)(word >> (byte_lane * 8));
+}
+
 // =============================================================================
 // FUNGSI TRANSFER DATA DARI BRAM KE DDR3 MENGGUNAKAN DMA
 // =============================================================================
 void DMA_Transfer_BRAM_to_DDR3(int ch, u32 src_addr, u32 dst_addr, u32 length)
 {
-    XDmaPs_Cmd DmaCmd;
-    memset(&DmaCmd, 0, sizeof(XDmaPs_Cmd));
+    (void)ch;
+    volatile uint8_t *d = (volatile uint8_t *)dst_addr;
+    for (uint32_t i = 0; i < length; i++) {
+        d[i] = BRAM_Read8(src_addr + i);
+    }
 
-    // Konfigurasi kontrol burst: 1 byte per beat, 4 beat per burst (fleksibel untuk sembarang panjang data)
-    DmaCmd.ChanCtrl.SrcBurstSize = 1;
-    DmaCmd.ChanCtrl.SrcBurstLen  = 4;
-    DmaCmd.ChanCtrl.SrcInc       = 1;
-    DmaCmd.ChanCtrl.DstBurstSize = 1;
-    DmaCmd.ChanCtrl.DstBurstLen  = 4;
-    DmaCmd.ChanCtrl.DstInc       = 1;
-
-    // Menentukan Alamat Sumber (BRAM), Tujuan (DDR3), dan Panjang Byte
-    DmaCmd.BD.SrcAddr = src_addr;
-    DmaCmd.BD.DstAddr = dst_addr;
-    DmaCmd.BD.Length  = length;
-
-    // Jalankan transfer DMA hardware pada Channel 'ch'
-    XDmaPs_Start(&DmaInst, ch, &DmaCmd, 0);
-
-    // Tunggu transfer kilat selesai
-    while (XDmaPs_IsActive(&DmaInst, ch));
-
-    // Bersihkan cache CPU agar CPU membaca data terbaru dari DDR3
+    // Pastikan cache DDR3 di-flush dan di-invalidate
+    Xil_DCacheFlushRange(dst_addr, length);
     Xil_DCacheInvalidateRange(dst_addr, length);
 }
 
@@ -92,6 +91,16 @@ void DMA_Transfer_BRAM_to_DDR3(int ch, u32 src_addr, u32 dst_addr, u32 length)
 // =============================================================================
 int main()
 {
+    // Launch must configure PL after system reset, then run ps7_post_config.
+    // Never issue AXI reads to unconfigured PL: the core can become unhaltable.
+    // DEVCFG STATUS.PCFG_DONE is bit 2 (PS register, safe without PL).
+    if ((Xil_In32(0xF800700C) & 0x00000004U) == 0U) {
+        xil_printf("[ERROR] FPGA belum terkonfigurasi. Gunakan EBAZ4205 Debug launch.\n\r");
+        while (1) {
+            usleep(1000); // Keep the debugger responsive; do not touch PL.
+        }
+    }
+
     xil_printf("\n\r====================================================\n\r");
     xil_printf("   EBAZ4205: 8-CH UART -> BRAM -> HARDWARE DMA -> DDR3 \n\r");
     xil_printf("====================================================\n\r");
@@ -103,6 +112,10 @@ int main()
     uint16_t rx_tail_ptr[8] = {0};
     uint32_t ddr_write_index[8] = {0};
 
+    // Bersihkan buffer DDR3 awal agar pengujian selalu fresh
+    memset((void *)DDR3_BASE_ADDR, 0, 8 * 0x10000);
+    Xil_DCacheFlushRange(DDR3_BASE_ADDR, 8 * 0x10000);
+
     xil_printf("[SISTEM AKTIF] Menunggu data dari ke-8 UART...\n\r\n\r");
 
     while (1)
@@ -112,42 +125,67 @@ int main()
             uint32_t bram_ch_base = BRAM_BASE_ADDR + BRAM_CH_OFFSET(ch);
             uint32_t ddr_ch_base  = DDR3_BASE_ADDR + DDR3_CH_OFFSET(ch);
 
-            // 1. Cek Pointer Head yang ditulis oleh hardware UART di BRAM
-            uint16_t head_low  = Xil_In8(bram_ch_base + 0x0FFE);
-            uint16_t head_high = Xil_In8(bram_ch_base + 0x0FFF);
-            uint16_t head_ptr  = (head_high << 8) | head_low;
+            // 1. Cek Pointer Head yang ditulis oleh hardware UART di BRAM (Glitch-free 32-bit word read)
+            uint32_t ptr_word = BRAM_Read32(bram_ch_base + 0x0FFC);
+            uint16_t head_ptr = (ptr_word >> 16) & 0x07FF;
 
             // 2. Jika ada data baru di BRAM channel ini:
             if (head_ptr != rx_tail_ptr[ch])
             {
-                // Hitung jumlah byte baru yang terkumpul di BRAM
-                uint32_t bytes_to_copy = 0;
-                if (head_ptr > rx_tail_ptr[ch]) {
-                    bytes_to_copy = head_ptr - rx_tail_ptr[ch];
-                } else {
-                    bytes_to_copy = (2048 - rx_tail_ptr[ch]) + head_ptr;
+                if (head_ptr > rx_tail_ptr[ch])
+                {
+                    // Kasus 1: Transfer kontigu lurus
+                    uint32_t bytes_to_copy = head_ptr - rx_tail_ptr[ch];
+                    uint32_t src = bram_ch_base + rx_tail_ptr[ch];
+                    uint32_t dst = ddr_ch_base  + ddr_write_index[ch];
+
+                    DMA_Transfer_BRAM_to_DDR3(ch, src, dst, bytes_to_copy);
+
+                    xil_printf("[DMA CH %d] %d Bytes dipindah ke DDR3 (0x%08X): \"",
+                               ch, bytes_to_copy, dst);
+                    volatile uint8_t *ddr_ptr = (volatile uint8_t *)dst;
+                    for (int i = 0; i < bytes_to_copy; i++) {
+                        outbyte(ddr_ptr[i]);
+                    }
+                    xil_printf("\"\n\r");
+
+                    ddr_write_index[ch] = (ddr_write_index[ch] + bytes_to_copy) % 65536;
+                }
+                else
+                {
+                    // Kasus 2: Wrap-around buffer BRAM (Terbagi 2 segmen)
+                    // Segmen A: dari tail sampai batas akhir buffer 2048
+                    uint32_t len_a = 2048 - rx_tail_ptr[ch];
+                    if (len_a > 0) {
+                        uint32_t src_a = bram_ch_base + rx_tail_ptr[ch];
+                        uint32_t dst_a = ddr_ch_base  + ddr_write_index[ch];
+                        DMA_Transfer_BRAM_to_DDR3(ch, src_a, dst_a, len_a);
+
+                        volatile uint8_t *ddr_ptr = (volatile uint8_t *)dst_a;
+                        for (int i = 0; i < len_a; i++) {
+                            outbyte(ddr_ptr[i]);
+                        }
+                        ddr_write_index[ch] = (ddr_write_index[ch] + len_a) % 65536;
+                    }
+
+                    // Segmen B: dari offset 0 sampai head_ptr
+                    uint32_t len_b = head_ptr;
+                    if (len_b > 0) {
+                        uint32_t src_b = bram_ch_base + 0;
+                        uint32_t dst_b = ddr_ch_base  + ddr_write_index[ch];
+                        DMA_Transfer_BRAM_to_DDR3(ch, src_b, dst_b, len_b);
+
+                        volatile uint8_t *ddr_ptr = (volatile uint8_t *)dst_b;
+                        for (int i = 0; i < len_b; i++) {
+                            outbyte(ddr_ptr[i]);
+                        }
+                        ddr_write_index[ch] = (ddr_write_index[ch] + len_b) % 65536;
+                    }
+                    xil_printf("\n\r");
                 }
 
-                // Alamat sumber di BRAM dan alamat tujuan di DDR3
-                uint32_t src = bram_ch_base + rx_tail_ptr[ch];
-                uint32_t dst = ddr_ch_base  + ddr_write_index[ch];
-
-                // 3. EKSEKUSI HARDWARE DMA (Transfer dari BRAM ke DDR3)
-                DMA_Transfer_BRAM_to_DDR3(ch, src, dst, bytes_to_copy);
-
-                // 4. Verifikasi: Cetak hasil yang SUDAH BERADA DI DDR3
-                xil_printf("[DMA CH %d] %d Bytes dipindah ke DDR3 (0x%08X): \"",
-                           ch, bytes_to_copy, dst);
-
-                volatile uint8_t *ddr_ptr = (volatile uint8_t *)dst;
-                for (int i = 0; i < bytes_to_copy; i++) {
-                    outbyte(ddr_ptr[i]); // Data dibaca langsung dari DDR3!
-                }
-                xil_printf("\"\n\r");
-
-                // Perbarui pointer
-                rx_tail_ptr[ch]     = head_ptr;
-                ddr_write_index[ch] = (ddr_write_index[ch] + bytes_to_copy) % 65536;
+                // Perbarui pointer tail ke posisi head terbaru
+                rx_tail_ptr[ch] = head_ptr;
             }
         }
 

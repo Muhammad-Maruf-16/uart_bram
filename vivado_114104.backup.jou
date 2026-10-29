@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Thu Oct 29 10:31:58 2026
+# Process ID: 114104
+# Current directory: /home/maruf/fpga_ebaz4205/uart_bram
+# Command line: vivado -mode batch -source gen_bit.tcl
+# Log file: /home/maruf/fpga_ebaz4205/uart_bram/vivado.log
+# Journal file: /home/maruf/fpga_ebaz4205/uart_bram/vivado.jou
+#-----------------------------------------------------------
+source gen_bit.tcl

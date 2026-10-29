@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-| Date             : Wed Oct 28 10:55:11 2026
+| Date             : Thu Oct 29 10:06:36 2026
 | Host             : maruf-ThinkPad-T470p running 64-bit Ubuntu 24.04.3 LTS
 | Command          : report_power -file design_1_wrapper_power_routed.rpt -pb design_1_wrapper_power_summary_routed.pb -rpx design_1_wrapper_power_routed.rpx
 | Design           : design_1_wrapper
@@ -53,15 +53,15 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.006 |        3 |       --- |             --- |
-| Slice Logic              |     0.004 |     5637 |       --- |             --- |
-|   LUT as Logic           |     0.004 |     2016 |     17600 |           11.45 |
-|   Register               |    <0.001 |     2401 |     35200 |            6.82 |
-|   LUT as Distributed RAM |    <0.001 |      100 |      6000 |            1.67 |
+| Slice Logic              |     0.004 |     5748 |       --- |             --- |
+|   LUT as Logic           |     0.004 |     2030 |     17600 |           11.53 |
+|   Register               |    <0.001 |     2466 |     35200 |            7.01 |
+|   LUT as Distributed RAM |    <0.001 |      108 |      6000 |            1.80 |
 |   LUT as Shift Register  |    <0.001 |      146 |      6000 |            2.43 |
 |   CARRY4                 |    <0.001 |       36 |      4400 |            0.82 |
 |   F7/F8 Muxes            |    <0.001 |       45 |     17600 |            0.26 |
-|   Others                 |     0.000 |      326 |       --- |             --- |
-| Signals                  |     0.006 |     4134 |       --- |             --- |
+|   Others                 |     0.000 |      325 |       --- |             --- |
+| Signals                  |     0.006 |     4211 |       --- |             --- |
 | Block RAM                |     0.002 |        8 |        60 |           13.33 |
 | I/O                      |    <0.001 |       16 |       100 |           16.00 |
 | PS7                      |     1.272 |        1 |       --- |             --- |

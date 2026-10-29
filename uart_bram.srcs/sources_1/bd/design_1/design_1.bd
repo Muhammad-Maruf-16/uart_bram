@@ -14,7 +14,8 @@
       "blk_mem_gen_0": "",
       "axi_smc": "",
       "rst_ps7_0_50M": "",
-      "uart8_bram_controller_0": ""
+      "uart8_bram_controller_0": "",
+      "xlslice_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -189,7 +190,7 @@
             "value": "true"
           },
           "Register_PortB_Output_of_Memory_Primitives": {
-            "value": "true"
+            "value": "false"
           },
           "Use_Byte_Write_Enable": {
             "value": "true"
@@ -307,13 +308,31 @@
             "right": "0"
           }
         }
+      },
+      "xlslice_0": {
+        "vlnv": "xilinx.com:ip:xlslice:1.0",
+        "xci_name": "design_1_xlslice_0_0",
+        "parameters": {
+          "DIN_FROM": {
+            "value": "14"
+          },
+          "DIN_TO": {
+            "value": "2"
+          },
+          "DIN_WIDTH": {
+            "value": "15"
+          },
+          "DOUT_WIDTH": {
+            "value": "13"
+          }
+        }
       }
     },
     "interface_nets": {
-      "axi_bram_ctrl_0_BRAM_PORTA": {
+      "processing_system7_0_M_AXI_GP0": {
         "interface_ports": [
-          "blk_mem_gen_0/BRAM_PORTB",
-          "axi_bram_ctrl_0/BRAM_PORTA"
+          "processing_system7_0/M_AXI_GP0",
+          "axi_smc/S00_AXI"
         ]
       },
       "processing_system7_0_FIXED_IO": {
@@ -322,22 +341,16 @@
           "processing_system7_0/FIXED_IO"
         ]
       },
-      "processing_system7_0_DDR": {
-        "interface_ports": [
-          "DDR",
-          "processing_system7_0/DDR"
-        ]
-      },
       "axi_smc_M00_AXI": {
         "interface_ports": [
           "axi_smc/M00_AXI",
           "axi_bram_ctrl_0/S_AXI"
         ]
       },
-      "processing_system7_0_M_AXI_GP0": {
+      "processing_system7_0_DDR": {
         "interface_ports": [
-          "processing_system7_0/M_AXI_GP0",
-          "axi_smc/S00_AXI"
+          "DDR",
+          "processing_system7_0/DDR"
         ]
       }
     },
@@ -407,6 +420,54 @@
         "ports": [
           "uart8_bram_controller_0/uart_tx",
           "uart_tx_0"
+        ]
+      },
+      "axi_bram_ctrl_0_bram_addr_a": {
+        "ports": [
+          "axi_bram_ctrl_0/bram_addr_a",
+          "xlslice_0/Din"
+        ]
+      },
+      "xlslice_0_Dout": {
+        "ports": [
+          "xlslice_0/Dout",
+          "blk_mem_gen_0/addrb"
+        ]
+      },
+      "axi_bram_ctrl_0_bram_clk_a": {
+        "ports": [
+          "axi_bram_ctrl_0/bram_clk_a",
+          "blk_mem_gen_0/clkb"
+        ]
+      },
+      "axi_bram_ctrl_0_bram_wrdata_a": {
+        "ports": [
+          "axi_bram_ctrl_0/bram_wrdata_a",
+          "blk_mem_gen_0/dinb"
+        ]
+      },
+      "blk_mem_gen_0_doutb": {
+        "ports": [
+          "blk_mem_gen_0/doutb",
+          "axi_bram_ctrl_0/bram_rddata_a"
+        ]
+      },
+      "axi_bram_ctrl_0_bram_en_a": {
+        "ports": [
+          "axi_bram_ctrl_0/bram_en_a",
+          "blk_mem_gen_0/enb"
+        ]
+      },
+      "axi_bram_ctrl_0_bram_rst_a": {
+        "ports": [
+          "axi_bram_ctrl_0/bram_rst_a",
+          "blk_mem_gen_0/rstb"
+        ]
+      },
+      "axi_bram_ctrl_0_bram_we_a": {
+        "ports": [
+          "axi_bram_ctrl_0/bram_we_a",
+          "blk_mem_gen_0/web"
         ]
       }
     },

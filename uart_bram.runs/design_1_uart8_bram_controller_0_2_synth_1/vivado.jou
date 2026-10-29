@@ -2,8 +2,8 @@
 # Vivado v2019.1 (64-bit)
 # SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
 # IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
-# Start of session at: Wed Oct 28 10:52:50 2026
-# Process ID: 20560
+# Start of session at: Wed Oct 28 17:03:45 2026
+# Process ID: 175772
 # Current directory: /home/maruf/fpga_ebaz4205/uart_bram/uart_bram.runs/design_1_uart8_bram_controller_0_2_synth_1
 # Command line: vivado -log design_1_uart8_bram_controller_0_2.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_uart8_bram_controller_0_2.tcl
 # Log file: /home/maruf/fpga_ebaz4205/uart_bram/uart_bram.runs/design_1_uart8_bram_controller_0_2_synth_1/design_1_uart8_bram_controller_0_2.vds

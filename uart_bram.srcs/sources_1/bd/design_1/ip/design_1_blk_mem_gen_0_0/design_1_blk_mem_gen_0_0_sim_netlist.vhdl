@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
--- Date        : Wed Oct 28 10:48:00 2026
+-- Date        : Thu Oct 29 10:04:27 2026
 -- Host        : maruf-ThinkPad-T470p running 64-bit Ubuntu 24.04.3 LTS
--- Command     : write_vhdl -force -mode funcsim -rename_top design_1_blk_mem_gen_0_0 -prefix
---               design_1_blk_mem_gen_0_0_ design_1_blk_mem_gen_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim
+--               /home/maruf/fpga_ebaz4205/uart_bram/uart_bram.srcs/sources_1/bd/design_1/ip/design_1_blk_mem_gen_0_0/design_1_blk_mem_gen_0_0_sim_netlist.vhdl
 -- Design      : design_1_blk_mem_gen_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -22,6 +22,8 @@ entity design_1_blk_mem_gen_0_0_blk_mem_gen_mux is
     clka : in STD_LOGIC;
     douta_array : in STD_LOGIC_VECTOR ( 63 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_blk_mem_gen_0_0_blk_mem_gen_mux : entity is "blk_mem_gen_mux";
 end design_1_blk_mem_gen_0_0_blk_mem_gen_mux;
 
 architecture STRUCTURE of design_1_blk_mem_gen_0_0_blk_mem_gen_mux is
@@ -463,12 +465,6 @@ architecture STRUCTURE of \design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameteriz
   signal \doutb[8]_INST_0_i_2_n_0\ : STD_LOGIC;
   signal \doutb[9]_INST_0_i_1_n_0\ : STD_LOGIC;
   signal \doutb[9]_INST_0_i_2_n_0\ : STD_LOGIC;
-  signal \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[0]_i_1_n_0\ : STD_LOGIC;
-  signal \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[1]_i_1_n_0\ : STD_LOGIC;
-  signal \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[2]_i_1_n_0\ : STD_LOGIC;
-  signal \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\ : STD_LOGIC;
-  signal \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\ : STD_LOGIC;
-  signal \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\ : STD_LOGIC;
   signal \no_softecc_sel_reg.ce_pri.sel_pipe[0]_i_1_n_0\ : STD_LOGIC;
   signal \no_softecc_sel_reg.ce_pri.sel_pipe[1]_i_1_n_0\ : STD_LOGIC;
   signal \no_softecc_sel_reg.ce_pri.sel_pipe[2]_i_1_n_0\ : STD_LOGIC;
@@ -476,11 +472,7 @@ architecture STRUCTURE of \design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameteriz
   signal \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\ : STD_LOGIC;
   signal \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[0]_i_1\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[1]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[2]_i_1\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \no_softecc_sel_reg.ce_pri.sel_pipe[0]_i_1\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \no_softecc_sel_reg.ce_pri.sel_pipe[1]_i_1\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \no_softecc_sel_reg.ce_pri.sel_pipe[1]_i_1\ : label is "soft_lutpair0";
   attribute SOFT_HLUTNM of \no_softecc_sel_reg.ce_pri.sel_pipe[2]_i_1\ : label is "soft_lutpair0";
 begin
 \doutb[0]_INST_0\: unisim.vcomponents.MUXF7
@@ -488,7 +480,7 @@ begin
       I0 => \doutb[0]_INST_0_i_1_n_0\,
       I1 => \doutb[0]_INST_0_i_2_n_0\,
       O => doutb(0),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[0]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -497,9 +489,9 @@ begin
         port map (
       I0 => DOBDO(0),
       I1 => \doutb[31]\(0),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(0),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(0),
       O => \doutb[0]_INST_0_i_1_n_0\
     );
@@ -510,9 +502,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(0),
       I1 => \doutb[31]_3\(0),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(0),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(0),
       O => \doutb[0]_INST_0_i_2_n_0\
     );
@@ -521,7 +513,7 @@ begin
       I0 => \doutb[10]_INST_0_i_1_n_0\,
       I1 => \doutb[10]_INST_0_i_2_n_0\,
       O => doutb(10),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[10]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -530,9 +522,9 @@ begin
         port map (
       I0 => DOBDO(10),
       I1 => \doutb[31]\(10),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(10),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(10),
       O => \doutb[10]_INST_0_i_1_n_0\
     );
@@ -543,9 +535,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(10),
       I1 => \doutb[31]_3\(10),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(10),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(10),
       O => \doutb[10]_INST_0_i_2_n_0\
     );
@@ -554,7 +546,7 @@ begin
       I0 => \doutb[11]_INST_0_i_1_n_0\,
       I1 => \doutb[11]_INST_0_i_2_n_0\,
       O => doutb(11),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[11]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -563,9 +555,9 @@ begin
         port map (
       I0 => DOBDO(11),
       I1 => \doutb[31]\(11),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(11),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(11),
       O => \doutb[11]_INST_0_i_1_n_0\
     );
@@ -576,9 +568,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(11),
       I1 => \doutb[31]_3\(11),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(11),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(11),
       O => \doutb[11]_INST_0_i_2_n_0\
     );
@@ -587,7 +579,7 @@ begin
       I0 => \doutb[12]_INST_0_i_1_n_0\,
       I1 => \doutb[12]_INST_0_i_2_n_0\,
       O => doutb(12),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[12]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -596,9 +588,9 @@ begin
         port map (
       I0 => DOBDO(12),
       I1 => \doutb[31]\(12),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(12),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(12),
       O => \doutb[12]_INST_0_i_1_n_0\
     );
@@ -609,9 +601,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(12),
       I1 => \doutb[31]_3\(12),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(12),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(12),
       O => \doutb[12]_INST_0_i_2_n_0\
     );
@@ -620,7 +612,7 @@ begin
       I0 => \doutb[13]_INST_0_i_1_n_0\,
       I1 => \doutb[13]_INST_0_i_2_n_0\,
       O => doutb(13),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[13]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -629,9 +621,9 @@ begin
         port map (
       I0 => DOBDO(13),
       I1 => \doutb[31]\(13),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(13),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(13),
       O => \doutb[13]_INST_0_i_1_n_0\
     );
@@ -642,9 +634,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(13),
       I1 => \doutb[31]_3\(13),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(13),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(13),
       O => \doutb[13]_INST_0_i_2_n_0\
     );
@@ -653,7 +645,7 @@ begin
       I0 => \doutb[14]_INST_0_i_1_n_0\,
       I1 => \doutb[14]_INST_0_i_2_n_0\,
       O => doutb(14),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[14]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -662,9 +654,9 @@ begin
         port map (
       I0 => DOBDO(14),
       I1 => \doutb[31]\(14),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(14),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(14),
       O => \doutb[14]_INST_0_i_1_n_0\
     );
@@ -675,9 +667,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(14),
       I1 => \doutb[31]_3\(14),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(14),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(14),
       O => \doutb[14]_INST_0_i_2_n_0\
     );
@@ -686,7 +678,7 @@ begin
       I0 => \doutb[15]_INST_0_i_1_n_0\,
       I1 => \doutb[15]_INST_0_i_2_n_0\,
       O => doutb(15),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[15]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -695,9 +687,9 @@ begin
         port map (
       I0 => DOBDO(15),
       I1 => \doutb[31]\(15),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(15),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(15),
       O => \doutb[15]_INST_0_i_1_n_0\
     );
@@ -708,9 +700,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(15),
       I1 => \doutb[31]_3\(15),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(15),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(15),
       O => \doutb[15]_INST_0_i_2_n_0\
     );
@@ -719,7 +711,7 @@ begin
       I0 => \doutb[16]_INST_0_i_1_n_0\,
       I1 => \doutb[16]_INST_0_i_2_n_0\,
       O => doutb(16),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[16]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -728,9 +720,9 @@ begin
         port map (
       I0 => DOBDO(16),
       I1 => \doutb[31]\(16),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(16),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(16),
       O => \doutb[16]_INST_0_i_1_n_0\
     );
@@ -741,9 +733,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(16),
       I1 => \doutb[31]_3\(16),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(16),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(16),
       O => \doutb[16]_INST_0_i_2_n_0\
     );
@@ -752,7 +744,7 @@ begin
       I0 => \doutb[17]_INST_0_i_1_n_0\,
       I1 => \doutb[17]_INST_0_i_2_n_0\,
       O => doutb(17),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[17]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -761,9 +753,9 @@ begin
         port map (
       I0 => DOBDO(17),
       I1 => \doutb[31]\(17),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(17),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(17),
       O => \doutb[17]_INST_0_i_1_n_0\
     );
@@ -774,9 +766,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(17),
       I1 => \doutb[31]_3\(17),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(17),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(17),
       O => \doutb[17]_INST_0_i_2_n_0\
     );
@@ -785,7 +777,7 @@ begin
       I0 => \doutb[18]_INST_0_i_1_n_0\,
       I1 => \doutb[18]_INST_0_i_2_n_0\,
       O => doutb(18),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[18]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -794,9 +786,9 @@ begin
         port map (
       I0 => DOBDO(18),
       I1 => \doutb[31]\(18),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(18),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(18),
       O => \doutb[18]_INST_0_i_1_n_0\
     );
@@ -807,9 +799,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(18),
       I1 => \doutb[31]_3\(18),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(18),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(18),
       O => \doutb[18]_INST_0_i_2_n_0\
     );
@@ -818,7 +810,7 @@ begin
       I0 => \doutb[19]_INST_0_i_1_n_0\,
       I1 => \doutb[19]_INST_0_i_2_n_0\,
       O => doutb(19),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[19]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -827,9 +819,9 @@ begin
         port map (
       I0 => DOBDO(19),
       I1 => \doutb[31]\(19),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(19),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(19),
       O => \doutb[19]_INST_0_i_1_n_0\
     );
@@ -840,9 +832,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(19),
       I1 => \doutb[31]_3\(19),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(19),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(19),
       O => \doutb[19]_INST_0_i_2_n_0\
     );
@@ -851,7 +843,7 @@ begin
       I0 => \doutb[1]_INST_0_i_1_n_0\,
       I1 => \doutb[1]_INST_0_i_2_n_0\,
       O => doutb(1),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[1]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -860,9 +852,9 @@ begin
         port map (
       I0 => DOBDO(1),
       I1 => \doutb[31]\(1),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(1),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(1),
       O => \doutb[1]_INST_0_i_1_n_0\
     );
@@ -873,9 +865,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(1),
       I1 => \doutb[31]_3\(1),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(1),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(1),
       O => \doutb[1]_INST_0_i_2_n_0\
     );
@@ -884,7 +876,7 @@ begin
       I0 => \doutb[20]_INST_0_i_1_n_0\,
       I1 => \doutb[20]_INST_0_i_2_n_0\,
       O => doutb(20),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[20]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -893,9 +885,9 @@ begin
         port map (
       I0 => DOBDO(20),
       I1 => \doutb[31]\(20),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(20),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(20),
       O => \doutb[20]_INST_0_i_1_n_0\
     );
@@ -906,9 +898,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(20),
       I1 => \doutb[31]_3\(20),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(20),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(20),
       O => \doutb[20]_INST_0_i_2_n_0\
     );
@@ -917,7 +909,7 @@ begin
       I0 => \doutb[21]_INST_0_i_1_n_0\,
       I1 => \doutb[21]_INST_0_i_2_n_0\,
       O => doutb(21),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[21]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -926,9 +918,9 @@ begin
         port map (
       I0 => DOBDO(21),
       I1 => \doutb[31]\(21),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(21),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(21),
       O => \doutb[21]_INST_0_i_1_n_0\
     );
@@ -939,9 +931,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(21),
       I1 => \doutb[31]_3\(21),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(21),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(21),
       O => \doutb[21]_INST_0_i_2_n_0\
     );
@@ -950,7 +942,7 @@ begin
       I0 => \doutb[22]_INST_0_i_1_n_0\,
       I1 => \doutb[22]_INST_0_i_2_n_0\,
       O => doutb(22),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[22]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -959,9 +951,9 @@ begin
         port map (
       I0 => DOBDO(22),
       I1 => \doutb[31]\(22),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(22),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(22),
       O => \doutb[22]_INST_0_i_1_n_0\
     );
@@ -972,9 +964,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(22),
       I1 => \doutb[31]_3\(22),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(22),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(22),
       O => \doutb[22]_INST_0_i_2_n_0\
     );
@@ -983,7 +975,7 @@ begin
       I0 => \doutb[23]_INST_0_i_1_n_0\,
       I1 => \doutb[23]_INST_0_i_2_n_0\,
       O => doutb(23),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[23]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -992,9 +984,9 @@ begin
         port map (
       I0 => DOBDO(23),
       I1 => \doutb[31]\(23),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(23),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(23),
       O => \doutb[23]_INST_0_i_1_n_0\
     );
@@ -1005,9 +997,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(23),
       I1 => \doutb[31]_3\(23),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(23),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(23),
       O => \doutb[23]_INST_0_i_2_n_0\
     );
@@ -1016,7 +1008,7 @@ begin
       I0 => \doutb[24]_INST_0_i_1_n_0\,
       I1 => \doutb[24]_INST_0_i_2_n_0\,
       O => doutb(24),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[24]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -1025,9 +1017,9 @@ begin
         port map (
       I0 => DOBDO(24),
       I1 => \doutb[31]\(24),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(24),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(24),
       O => \doutb[24]_INST_0_i_1_n_0\
     );
@@ -1038,9 +1030,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(24),
       I1 => \doutb[31]_3\(24),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(24),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(24),
       O => \doutb[24]_INST_0_i_2_n_0\
     );
@@ -1049,7 +1041,7 @@ begin
       I0 => \doutb[25]_INST_0_i_1_n_0\,
       I1 => \doutb[25]_INST_0_i_2_n_0\,
       O => doutb(25),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[25]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -1058,9 +1050,9 @@ begin
         port map (
       I0 => DOBDO(25),
       I1 => \doutb[31]\(25),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(25),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(25),
       O => \doutb[25]_INST_0_i_1_n_0\
     );
@@ -1071,9 +1063,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(25),
       I1 => \doutb[31]_3\(25),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(25),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(25),
       O => \doutb[25]_INST_0_i_2_n_0\
     );
@@ -1082,7 +1074,7 @@ begin
       I0 => \doutb[26]_INST_0_i_1_n_0\,
       I1 => \doutb[26]_INST_0_i_2_n_0\,
       O => doutb(26),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[26]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -1091,9 +1083,9 @@ begin
         port map (
       I0 => DOBDO(26),
       I1 => \doutb[31]\(26),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(26),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(26),
       O => \doutb[26]_INST_0_i_1_n_0\
     );
@@ -1104,9 +1096,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(26),
       I1 => \doutb[31]_3\(26),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(26),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(26),
       O => \doutb[26]_INST_0_i_2_n_0\
     );
@@ -1115,7 +1107,7 @@ begin
       I0 => \doutb[27]_INST_0_i_1_n_0\,
       I1 => \doutb[27]_INST_0_i_2_n_0\,
       O => doutb(27),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[27]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -1124,9 +1116,9 @@ begin
         port map (
       I0 => DOBDO(27),
       I1 => \doutb[31]\(27),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(27),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(27),
       O => \doutb[27]_INST_0_i_1_n_0\
     );
@@ -1137,9 +1129,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(27),
       I1 => \doutb[31]_3\(27),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(27),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(27),
       O => \doutb[27]_INST_0_i_2_n_0\
     );
@@ -1148,7 +1140,7 @@ begin
       I0 => \doutb[28]_INST_0_i_1_n_0\,
       I1 => \doutb[28]_INST_0_i_2_n_0\,
       O => doutb(28),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[28]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -1157,9 +1149,9 @@ begin
         port map (
       I0 => DOBDO(28),
       I1 => \doutb[31]\(28),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(28),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(28),
       O => \doutb[28]_INST_0_i_1_n_0\
     );
@@ -1170,9 +1162,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(28),
       I1 => \doutb[31]_3\(28),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(28),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(28),
       O => \doutb[28]_INST_0_i_2_n_0\
     );
@@ -1181,7 +1173,7 @@ begin
       I0 => \doutb[29]_INST_0_i_1_n_0\,
       I1 => \doutb[29]_INST_0_i_2_n_0\,
       O => doutb(29),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[29]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -1190,9 +1182,9 @@ begin
         port map (
       I0 => DOBDO(29),
       I1 => \doutb[31]\(29),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(29),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(29),
       O => \doutb[29]_INST_0_i_1_n_0\
     );
@@ -1203,9 +1195,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(29),
       I1 => \doutb[31]_3\(29),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(29),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(29),
       O => \doutb[29]_INST_0_i_2_n_0\
     );
@@ -1214,7 +1206,7 @@ begin
       I0 => \doutb[2]_INST_0_i_1_n_0\,
       I1 => \doutb[2]_INST_0_i_2_n_0\,
       O => doutb(2),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[2]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -1223,9 +1215,9 @@ begin
         port map (
       I0 => DOBDO(2),
       I1 => \doutb[31]\(2),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(2),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(2),
       O => \doutb[2]_INST_0_i_1_n_0\
     );
@@ -1236,9 +1228,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(2),
       I1 => \doutb[31]_3\(2),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(2),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(2),
       O => \doutb[2]_INST_0_i_2_n_0\
     );
@@ -1247,7 +1239,7 @@ begin
       I0 => \doutb[30]_INST_0_i_1_n_0\,
       I1 => \doutb[30]_INST_0_i_2_n_0\,
       O => doutb(30),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[30]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -1256,9 +1248,9 @@ begin
         port map (
       I0 => DOBDO(30),
       I1 => \doutb[31]\(30),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(30),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(30),
       O => \doutb[30]_INST_0_i_1_n_0\
     );
@@ -1269,9 +1261,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(30),
       I1 => \doutb[31]_3\(30),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(30),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(30),
       O => \doutb[30]_INST_0_i_2_n_0\
     );
@@ -1280,7 +1272,7 @@ begin
       I0 => \doutb[31]_INST_0_i_1_n_0\,
       I1 => \doutb[31]_INST_0_i_2_n_0\,
       O => doutb(31),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[31]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -1289,9 +1281,9 @@ begin
         port map (
       I0 => DOBDO(31),
       I1 => \doutb[31]\(31),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(31),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(31),
       O => \doutb[31]_INST_0_i_1_n_0\
     );
@@ -1302,9 +1294,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(31),
       I1 => \doutb[31]_3\(31),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(31),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(31),
       O => \doutb[31]_INST_0_i_2_n_0\
     );
@@ -1313,7 +1305,7 @@ begin
       I0 => \doutb[3]_INST_0_i_1_n_0\,
       I1 => \doutb[3]_INST_0_i_2_n_0\,
       O => doutb(3),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[3]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -1322,9 +1314,9 @@ begin
         port map (
       I0 => DOBDO(3),
       I1 => \doutb[31]\(3),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(3),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(3),
       O => \doutb[3]_INST_0_i_1_n_0\
     );
@@ -1335,9 +1327,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(3),
       I1 => \doutb[31]_3\(3),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(3),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(3),
       O => \doutb[3]_INST_0_i_2_n_0\
     );
@@ -1346,7 +1338,7 @@ begin
       I0 => \doutb[4]_INST_0_i_1_n_0\,
       I1 => \doutb[4]_INST_0_i_2_n_0\,
       O => doutb(4),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[4]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -1355,9 +1347,9 @@ begin
         port map (
       I0 => DOBDO(4),
       I1 => \doutb[31]\(4),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(4),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(4),
       O => \doutb[4]_INST_0_i_1_n_0\
     );
@@ -1368,9 +1360,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(4),
       I1 => \doutb[31]_3\(4),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(4),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(4),
       O => \doutb[4]_INST_0_i_2_n_0\
     );
@@ -1379,7 +1371,7 @@ begin
       I0 => \doutb[5]_INST_0_i_1_n_0\,
       I1 => \doutb[5]_INST_0_i_2_n_0\,
       O => doutb(5),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[5]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -1388,9 +1380,9 @@ begin
         port map (
       I0 => DOBDO(5),
       I1 => \doutb[31]\(5),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(5),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(5),
       O => \doutb[5]_INST_0_i_1_n_0\
     );
@@ -1401,9 +1393,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(5),
       I1 => \doutb[31]_3\(5),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(5),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(5),
       O => \doutb[5]_INST_0_i_2_n_0\
     );
@@ -1412,7 +1404,7 @@ begin
       I0 => \doutb[6]_INST_0_i_1_n_0\,
       I1 => \doutb[6]_INST_0_i_2_n_0\,
       O => doutb(6),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[6]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -1421,9 +1413,9 @@ begin
         port map (
       I0 => DOBDO(6),
       I1 => \doutb[31]\(6),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(6),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(6),
       O => \doutb[6]_INST_0_i_1_n_0\
     );
@@ -1434,9 +1426,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(6),
       I1 => \doutb[31]_3\(6),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(6),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(6),
       O => \doutb[6]_INST_0_i_2_n_0\
     );
@@ -1445,7 +1437,7 @@ begin
       I0 => \doutb[7]_INST_0_i_1_n_0\,
       I1 => \doutb[7]_INST_0_i_2_n_0\,
       O => doutb(7),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[7]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -1454,9 +1446,9 @@ begin
         port map (
       I0 => DOBDO(7),
       I1 => \doutb[31]\(7),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(7),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(7),
       O => \doutb[7]_INST_0_i_1_n_0\
     );
@@ -1467,9 +1459,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(7),
       I1 => \doutb[31]_3\(7),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(7),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(7),
       O => \doutb[7]_INST_0_i_2_n_0\
     );
@@ -1478,7 +1470,7 @@ begin
       I0 => \doutb[8]_INST_0_i_1_n_0\,
       I1 => \doutb[8]_INST_0_i_2_n_0\,
       O => doutb(8),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[8]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -1487,9 +1479,9 @@ begin
         port map (
       I0 => DOBDO(8),
       I1 => \doutb[31]\(8),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(8),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(8),
       O => \doutb[8]_INST_0_i_1_n_0\
     );
@@ -1500,9 +1492,9 @@ begin
         port map (
       I0 => \doutb[31]_2\(8),
       I1 => \doutb[31]_3\(8),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(8),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(8),
       O => \doutb[8]_INST_0_i_2_n_0\
     );
@@ -1511,7 +1503,7 @@ begin
       I0 => \doutb[9]_INST_0_i_1_n_0\,
       I1 => \doutb[9]_INST_0_i_2_n_0\,
       O => doutb(9),
-      S => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\
+      S => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\
     );
 \doutb[9]_INST_0_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -1520,9 +1512,9 @@ begin
         port map (
       I0 => DOBDO(9),
       I1 => \doutb[31]\(9),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_0\(9),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_1\(9),
       O => \doutb[9]_INST_0_i_1_n_0\
     );
@@ -1533,74 +1525,11 @@ begin
         port map (
       I0 => \doutb[31]_2\(9),
       I1 => \doutb[31]_3\(9),
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
+      I2 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
       I3 => \doutb[31]_4\(9),
-      I4 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
+      I4 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
       I5 => \doutb[31]_5\(9),
       O => \doutb[9]_INST_0_i_2_n_0\
-    );
-\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[0]_i_1\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"B8"
-    )
-        port map (
-      I0 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0]\,
-      I1 => enb,
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
-      O => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[0]_i_1_n_0\
-    );
-\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[1]_i_1\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"B8"
-    )
-        port map (
-      I0 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1]\,
-      I1 => enb,
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
-      O => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[1]_i_1_n_0\
-    );
-\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[2]_i_1\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"B8"
-    )
-        port map (
-      I0 => \no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2]\,
-      I1 => enb,
-      I2 => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\,
-      O => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[2]_i_1_n_0\
-    );
-\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg[0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clkb,
-      CE => '1',
-      D => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[0]_i_1_n_0\,
-      Q => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0]\,
-      R => '0'
-    );
-\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg[1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clkb,
-      CE => '1',
-      D => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[1]_i_1_n_0\,
-      Q => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1]\,
-      R => '0'
-    );
-\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg[2]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => clkb,
-      CE => '1',
-      D => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[2]_i_1_n_0\,
-      Q => \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2]\,
-      R => '0'
     );
 \no_softecc_sel_reg.ce_pri.sel_pipe[0]_i_1\: unisim.vcomponents.LUT3
     generic map(
@@ -1674,7 +1603,7 @@ entity design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper is
   port (
     douta_array : out STD_LOGIC_VECTOR ( 7 downto 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_0\ : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    ram_rstreg_b : out STD_LOGIC;
+    ram_rstram_b : out STD_LOGIC;
     ENB_I : out STD_LOGIC;
     ENB_I_0 : out STD_LOGIC;
     ENB_I_1 : out STD_LOGIC;
@@ -1692,9 +1621,7 @@ entity design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper is
     clka : in STD_LOGIC;
     clkb : in STD_LOGIC;
     ena : in STD_LOGIC;
-    enb : in STD_LOGIC;
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ : in STD_LOGIC;
-    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 12 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
@@ -1702,9 +1629,13 @@ entity design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper is
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     web : in STD_LOGIC_VECTOR ( 3 downto 0 );
     rstb : in STD_LOGIC;
-    ENB_dly_reg_D : in STD_LOGIC;
+    POR_B : in STD_LOGIC;
+    ENB_dly_D : in STD_LOGIC;
+    enb : in STD_LOGIC;
     ENA_dly_reg_D : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper : entity is "blk_mem_gen_prim_wrapper";
 end design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper;
 
 architecture STRUCTURE of design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper is
@@ -1715,7 +1646,7 @@ architecture STRUCTURE of design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper is
   signal \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_75\ : STD_LOGIC;
   signal ENA_I_12 : STD_LOGIC;
   signal ENB_I_6 : STD_LOGIC;
-  signal \^ram_rstreg_b\ : STD_LOGIC;
+  signal \^ram_rstram_b\ : STD_LOGIC;
   signal \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED\ : STD_LOGIC;
   signal \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED\ : STD_LOGIC;
   signal \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_DBITERR_UNCONNECTED\ : STD_LOGIC;
@@ -1727,11 +1658,11 @@ architecture STRUCTURE of design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper is
   attribute box_type : string;
   attribute box_type of \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram\ : label is "PRIMITIVE";
 begin
-  ram_rstreg_b <= \^ram_rstreg_b\;
+  ram_rstram_b <= \^ram_rstram_b\;
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram\: unisim.vcomponents.RAMB36E1
     generic map(
       DOA_REG => 1,
-      DOB_REG => 1,
+      DOB_REG => 0,
       EN_ECC_READ => false,
       EN_ECC_WRITE => false,
       INITP_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
@@ -1941,11 +1872,11 @@ begin
       INJECTSBITERR => '0',
       RDADDRECC(8 downto 0) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED\(8 downto 0),
       REGCEAREGCE => ena,
-      REGCEB => enb,
+      REGCEB => '0',
       RSTRAMARSTRAM => \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\,
-      RSTRAMB => \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\,
+      RSTRAMB => \^ram_rstram_b\,
       RSTREGARSTREG => \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\,
-      RSTREGB => \^ram_rstreg_b\,
+      RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
       WEA(3) => wea(0),
       WEA(2) => wea(0),
@@ -2055,7 +1986,7 @@ begin
       INIT => X"AAABAAAA"
     )
         port map (
-      I0 => ENB_dly_reg_D,
+      I0 => ENB_dly_D,
       I1 => addrb(11),
       I2 => addrb(10),
       I3 => addrb(12),
@@ -2067,7 +1998,7 @@ begin
       INIT => X"ABAAAAAA"
     )
         port map (
-      I0 => ENB_dly_reg_D,
+      I0 => ENB_dly_D,
       I1 => addrb(12),
       I2 => addrb(11),
       I3 => enb,
@@ -2079,7 +2010,7 @@ begin
       INIT => X"ABAAAAAA"
     )
         port map (
-      I0 => ENB_dly_reg_D,
+      I0 => ENB_dly_D,
       I1 => addrb(12),
       I2 => addrb(10),
       I3 => enb,
@@ -2091,7 +2022,7 @@ begin
       INIT => X"BAAAAAAA"
     )
         port map (
-      I0 => ENB_dly_reg_D,
+      I0 => ENB_dly_D,
       I1 => addrb(12),
       I2 => addrb(11),
       I3 => addrb(10),
@@ -2103,7 +2034,7 @@ begin
       INIT => X"ABAAAAAA"
     )
         port map (
-      I0 => ENB_dly_reg_D,
+      I0 => ENB_dly_D,
       I1 => addrb(11),
       I2 => addrb(10),
       I3 => addrb(12),
@@ -2115,7 +2046,7 @@ begin
       INIT => X"BAAAAAAA"
     )
         port map (
-      I0 => ENB_dly_reg_D,
+      I0 => ENB_dly_D,
       I1 => addrb(11),
       I2 => enb,
       I3 => addrb(10),
@@ -2127,7 +2058,7 @@ begin
       INIT => X"BAAAAAAA"
     )
         port map (
-      I0 => ENB_dly_reg_D,
+      I0 => ENB_dly_D,
       I1 => addrb(10),
       I2 => addrb(11),
       I3 => enb,
@@ -2139,7 +2070,7 @@ begin
       INIT => X"EAAAAAAA"
     )
         port map (
-      I0 => ENB_dly_reg_D,
+      I0 => ENB_dly_D,
       I1 => addrb(11),
       I2 => addrb(10),
       I3 => addrb(12),
@@ -2152,8 +2083,8 @@ begin
     )
         port map (
       I0 => rstb,
-      I1 => \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\,
-      O => \^ram_rstreg_b\
+      I1 => POR_B,
+      O => \^ram_rstram_b\
     );
 end STRUCTURE;
 library IEEE;
@@ -2169,10 +2100,8 @@ entity \design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized0\ is
     ENA_I : in STD_LOGIC;
     ENB_I : in STD_LOGIC;
     ena : in STD_LOGIC;
-    enb : in STD_LOGIC;
     POR_A : in STD_LOGIC;
-    POR_B : in STD_LOGIC;
-    ram_rstreg_b : in STD_LOGIC;
+    ram_rstram_b : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 11 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 9 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
@@ -2204,7 +2133,7 @@ begin
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram\: unisim.vcomponents.RAMB36E1
     generic map(
       DOA_REG => 1,
-      DOB_REG => 1,
+      DOB_REG => 0,
       EN_ECC_READ => false,
       EN_ECC_WRITE => false,
       INITP_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
@@ -2414,11 +2343,11 @@ begin
       INJECTSBITERR => '0',
       RDADDRECC(8 downto 0) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED\(8 downto 0),
       REGCEAREGCE => ena,
-      REGCEB => enb,
+      REGCEB => '0',
       RSTRAMARSTRAM => POR_A,
-      RSTRAMB => POR_B,
+      RSTRAMB => ram_rstram_b,
       RSTREGARSTREG => POR_A,
-      RSTREGB => ram_rstreg_b,
+      RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
       WEA(3) => wea(0),
       WEA(2) => wea(0),
@@ -2441,10 +2370,8 @@ entity \design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized1\ is
     ENA_I : in STD_LOGIC;
     ENB_I : in STD_LOGIC;
     ena : in STD_LOGIC;
-    enb : in STD_LOGIC;
     POR_A : in STD_LOGIC;
-    POR_B : in STD_LOGIC;
-    ram_rstreg_b : in STD_LOGIC;
+    ram_rstram_b : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 11 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 9 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
@@ -2476,7 +2403,7 @@ begin
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram\: unisim.vcomponents.RAMB36E1
     generic map(
       DOA_REG => 1,
-      DOB_REG => 1,
+      DOB_REG => 0,
       EN_ECC_READ => false,
       EN_ECC_WRITE => false,
       INITP_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
@@ -2686,11 +2613,11 @@ begin
       INJECTSBITERR => '0',
       RDADDRECC(8 downto 0) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED\(8 downto 0),
       REGCEAREGCE => ena,
-      REGCEB => enb,
+      REGCEB => '0',
       RSTRAMARSTRAM => POR_A,
-      RSTRAMB => POR_B,
+      RSTRAMB => ram_rstram_b,
       RSTREGARSTREG => POR_A,
-      RSTREGB => ram_rstreg_b,
+      RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
       WEA(3) => wea(0),
       WEA(2) => wea(0),
@@ -2713,10 +2640,8 @@ entity \design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized2\ is
     ENA_I : in STD_LOGIC;
     ENB_I : in STD_LOGIC;
     ena : in STD_LOGIC;
-    enb : in STD_LOGIC;
     POR_A : in STD_LOGIC;
-    POR_B : in STD_LOGIC;
-    ram_rstreg_b : in STD_LOGIC;
+    ram_rstram_b : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 11 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 9 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
@@ -2748,7 +2673,7 @@ begin
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram\: unisim.vcomponents.RAMB36E1
     generic map(
       DOA_REG => 1,
-      DOB_REG => 1,
+      DOB_REG => 0,
       EN_ECC_READ => false,
       EN_ECC_WRITE => false,
       INITP_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
@@ -2958,11 +2883,11 @@ begin
       INJECTSBITERR => '0',
       RDADDRECC(8 downto 0) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED\(8 downto 0),
       REGCEAREGCE => ena,
-      REGCEB => enb,
+      REGCEB => '0',
       RSTRAMARSTRAM => POR_A,
-      RSTRAMB => POR_B,
+      RSTRAMB => ram_rstram_b,
       RSTREGARSTREG => POR_A,
-      RSTREGB => ram_rstreg_b,
+      RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
       WEA(3) => wea(0),
       WEA(2) => wea(0),
@@ -2985,10 +2910,8 @@ entity \design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized3\ is
     ENA_I : in STD_LOGIC;
     ENB_I : in STD_LOGIC;
     ena : in STD_LOGIC;
-    enb : in STD_LOGIC;
     POR_A : in STD_LOGIC;
-    POR_B : in STD_LOGIC;
-    ram_rstreg_b : in STD_LOGIC;
+    ram_rstram_b : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 11 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 9 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
@@ -3020,7 +2943,7 @@ begin
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram\: unisim.vcomponents.RAMB36E1
     generic map(
       DOA_REG => 1,
-      DOB_REG => 1,
+      DOB_REG => 0,
       EN_ECC_READ => false,
       EN_ECC_WRITE => false,
       INITP_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
@@ -3230,11 +3153,11 @@ begin
       INJECTSBITERR => '0',
       RDADDRECC(8 downto 0) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED\(8 downto 0),
       REGCEAREGCE => ena,
-      REGCEB => enb,
+      REGCEB => '0',
       RSTRAMARSTRAM => POR_A,
-      RSTRAMB => POR_B,
+      RSTRAMB => ram_rstram_b,
       RSTREGARSTREG => POR_A,
-      RSTREGB => ram_rstreg_b,
+      RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
       WEA(3) => wea(0),
       WEA(2) => wea(0),
@@ -3257,10 +3180,8 @@ entity \design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized4\ is
     ENA_I : in STD_LOGIC;
     ENB_I : in STD_LOGIC;
     ena : in STD_LOGIC;
-    enb : in STD_LOGIC;
     POR_A : in STD_LOGIC;
-    POR_B : in STD_LOGIC;
-    ram_rstreg_b : in STD_LOGIC;
+    ram_rstram_b : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 11 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 9 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
@@ -3292,7 +3213,7 @@ begin
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram\: unisim.vcomponents.RAMB36E1
     generic map(
       DOA_REG => 1,
-      DOB_REG => 1,
+      DOB_REG => 0,
       EN_ECC_READ => false,
       EN_ECC_WRITE => false,
       INITP_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
@@ -3502,11 +3423,11 @@ begin
       INJECTSBITERR => '0',
       RDADDRECC(8 downto 0) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED\(8 downto 0),
       REGCEAREGCE => ena,
-      REGCEB => enb,
+      REGCEB => '0',
       RSTRAMARSTRAM => POR_A,
-      RSTRAMB => POR_B,
+      RSTRAMB => ram_rstram_b,
       RSTREGARSTREG => POR_A,
-      RSTREGB => ram_rstreg_b,
+      RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
       WEA(3) => wea(0),
       WEA(2) => wea(0),
@@ -3529,10 +3450,8 @@ entity \design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized5\ is
     ENA_I : in STD_LOGIC;
     ENB_I : in STD_LOGIC;
     ena : in STD_LOGIC;
-    enb : in STD_LOGIC;
     POR_A : in STD_LOGIC;
-    POR_B : in STD_LOGIC;
-    ram_rstreg_b : in STD_LOGIC;
+    ram_rstram_b : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 11 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 9 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
@@ -3564,7 +3483,7 @@ begin
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram\: unisim.vcomponents.RAMB36E1
     generic map(
       DOA_REG => 1,
-      DOB_REG => 1,
+      DOB_REG => 0,
       EN_ECC_READ => false,
       EN_ECC_WRITE => false,
       INITP_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
@@ -3774,11 +3693,11 @@ begin
       INJECTSBITERR => '0',
       RDADDRECC(8 downto 0) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED\(8 downto 0),
       REGCEAREGCE => ena,
-      REGCEB => enb,
+      REGCEB => '0',
       RSTRAMARSTRAM => POR_A,
-      RSTRAMB => POR_B,
+      RSTRAMB => ram_rstram_b,
       RSTREGARSTREG => POR_A,
-      RSTREGB => ram_rstreg_b,
+      RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
       WEA(3) => wea(0),
       WEA(2) => wea(0),
@@ -3801,10 +3720,8 @@ entity \design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized6\ is
     ENA_I : in STD_LOGIC;
     ENB_I : in STD_LOGIC;
     ena : in STD_LOGIC;
-    enb : in STD_LOGIC;
     POR_A : in STD_LOGIC;
-    POR_B : in STD_LOGIC;
-    ram_rstreg_b : in STD_LOGIC;
+    ram_rstram_b : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 11 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 9 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
@@ -3836,7 +3753,7 @@ begin
 \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram\: unisim.vcomponents.RAMB36E1
     generic map(
       DOA_REG => 1,
-      DOB_REG => 1,
+      DOB_REG => 0,
       EN_ECC_READ => false,
       EN_ECC_WRITE => false,
       INITP_00 => X"0000000000000000000000000000000000000000000000000000000000000000",
@@ -4046,11 +3963,11 @@ begin
       INJECTSBITERR => '0',
       RDADDRECC(8 downto 0) => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED\(8 downto 0),
       REGCEAREGCE => ena,
-      REGCEB => enb,
+      REGCEB => '0',
       RSTRAMARSTRAM => POR_A,
-      RSTRAMB => POR_B,
+      RSTRAMB => ram_rstram_b,
       RSTREGARSTREG => POR_A,
-      RSTREGB => ram_rstreg_b,
+      RSTREGB => '0',
       SBITERR => \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED\,
       WEA(3) => wea(0),
       WEA(2) => wea(0),
@@ -4069,8 +3986,7 @@ entity design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width is
     douta_array : out STD_LOGIC_VECTOR ( 7 downto 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram\ : out STD_LOGIC_VECTOR ( 31 downto 0 );
     POR_A : out STD_LOGIC;
-    POR_B : out STD_LOGIC;
-    ram_rstreg_b : out STD_LOGIC;
+    ram_rstram_b : out STD_LOGIC;
     \SAFETY_CKT_GEN.POR_B_reg_0\ : out STD_LOGIC;
     ENB_I : out STD_LOGIC;
     ENB_I_0 : out STD_LOGIC;
@@ -4090,7 +4006,6 @@ entity design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width is
     clkb : in STD_LOGIC;
     clka : in STD_LOGIC;
     ena : in STD_LOGIC;
-    enb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 12 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
@@ -4098,16 +4013,19 @@ entity design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width is
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     web : in STD_LOGIC_VECTOR ( 3 downto 0 );
     \SAFETY_CKT_GEN.ENA_WITH_REG.ENA_dly_reg_D_reg_0\ : in STD_LOGIC;
-    \SAFETY_CKT_GEN.ENB_WITH_REG.ENB_dly_reg_D_reg_0\ : in STD_LOGIC;
-    rstb : in STD_LOGIC
+    \SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_D_reg_0\ : in STD_LOGIC;
+    rstb : in STD_LOGIC;
+    enb : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width : entity is "blk_mem_gen_prim_width";
 end design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width;
 
 architecture STRUCTURE of design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width is
   signal ENA_dly_reg_D : STD_LOGIC;
-  signal ENB_dly_reg_D : STD_LOGIC;
+  signal ENB_dly_D : STD_LOGIC;
   signal \^por_a\ : STD_LOGIC;
-  signal \^por_b\ : STD_LOGIC;
+  signal POR_B : STD_LOGIC;
   signal RSTA_SHFT_REG : STD_LOGIC_VECTOR ( 4 downto 0 );
   signal RSTB_SHFT_REG : STD_LOGIC_VECTOR ( 4 downto 0 );
   signal \SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[3]_srl3_n_0\ : STD_LOGIC;
@@ -4122,7 +4040,6 @@ architecture STRUCTURE of design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width is
   attribute srl_name of \SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[3]_srl3\ : label is "U0/\inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[3]_srl3 ";
 begin
   POR_A <= \^por_a\;
-  POR_B <= \^por_b\;
 \SAFETY_CKT_GEN.ENA_WITH_REG.ENA_dly_reg_D_reg\: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
@@ -4134,15 +4051,15 @@ begin
       Q => ENA_dly_reg_D,
       R => '0'
     );
-\SAFETY_CKT_GEN.ENB_WITH_REG.ENB_dly_reg_D_reg\: unisim.vcomponents.FDRE
+\SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_D_reg\: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
     )
         port map (
       C => clkb,
       CE => '1',
-      D => \SAFETY_CKT_GEN.ENB_WITH_REG.ENB_dly_reg_D_reg_0\,
-      Q => ENB_dly_reg_D,
+      D => \SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_D_reg_0\,
+      Q => ENB_dly_D,
       R => '0'
     );
 \SAFETY_CKT_GEN.POR_A_i_1\: unisim.vcomponents.LUT2
@@ -4182,7 +4099,7 @@ begin
       C => clkb,
       CE => '1',
       D => p_1_out,
-      Q => \^por_b\,
+      Q => POR_B,
       R => '0'
     );
 \SAFETY_CKT_GEN.RSTA_BUSY_WITH_REG.RSTA_BUSY_i_1\: unisim.vcomponents.LUT3
@@ -4267,22 +4184,21 @@ begin
       Q => RSTB_SHFT_REG(4),
       R => '0'
     );
-\SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_WITH_REG.RSTB_BUSY_i_1\: unisim.vcomponents.LUT4
+\SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_NO_REG.RSTB_BUSY_i_1\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FFFE"
     )
         port map (
-      I0 => \^por_b\,
+      I0 => POR_B,
       I1 => rstb,
-      I2 => \SAFETY_CKT_GEN.ENB_WITH_REG.ENB_dly_reg_D_reg_0\,
-      I3 => ENB_dly_reg_D,
+      I2 => \SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_D_reg_0\,
+      I3 => ENB_dly_D,
       O => \SAFETY_CKT_GEN.POR_B_reg_0\
     );
 \prim_noinit.ram\: entity work.design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper
      port map (
       \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_0\(31 downto 0) => \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram\(31 downto 0),
       \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1\ => \^por_a\,
-      \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2\ => \^por_b\,
       ENA_I => ENA_I,
       ENA_I_10 => ENA_I_10,
       ENA_I_11 => ENA_I_11,
@@ -4298,7 +4214,8 @@ begin
       ENB_I_3 => ENB_I_3,
       ENB_I_4 => ENB_I_4,
       ENB_I_5 => ENB_I_5,
-      ENB_dly_reg_D => ENB_dly_reg_D,
+      ENB_dly_D => ENB_dly_D,
+      POR_B => POR_B,
       addra(14 downto 0) => addra(14 downto 0),
       addrb(12 downto 0) => addrb(12 downto 0),
       clka => clka,
@@ -4308,7 +4225,7 @@ begin
       douta_array(7 downto 0) => douta_array(7 downto 0),
       ena => ena,
       enb => enb,
-      ram_rstreg_b => ram_rstreg_b,
+      ram_rstram_b => ram_rstram_b,
       rstb => rstb,
       wea(0) => wea(0),
       web(3 downto 0) => web(3 downto 0)
@@ -4327,10 +4244,8 @@ entity \design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized0\ is
     ENA_I : in STD_LOGIC;
     ENB_I : in STD_LOGIC;
     ena : in STD_LOGIC;
-    enb : in STD_LOGIC;
     POR_A : in STD_LOGIC;
-    POR_B : in STD_LOGIC;
-    ram_rstreg_b : in STD_LOGIC;
+    ram_rstram_b : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 11 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 9 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
@@ -4350,7 +4265,6 @@ begin
       ENA_I => ENA_I,
       ENB_I => ENB_I,
       POR_A => POR_A,
-      POR_B => POR_B,
       addra(11 downto 0) => addra(11 downto 0),
       addrb(9 downto 0) => addrb(9 downto 0),
       clka => clka,
@@ -4359,8 +4273,7 @@ begin
       dinb(31 downto 0) => dinb(31 downto 0),
       douta_array(7 downto 0) => douta_array(7 downto 0),
       ena => ena,
-      enb => enb,
-      ram_rstreg_b => ram_rstreg_b,
+      ram_rstram_b => ram_rstram_b,
       wea(0) => wea(0),
       web(3 downto 0) => web(3 downto 0)
     );
@@ -4378,10 +4291,8 @@ entity \design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized1\ is
     ENA_I : in STD_LOGIC;
     ENB_I : in STD_LOGIC;
     ena : in STD_LOGIC;
-    enb : in STD_LOGIC;
     POR_A : in STD_LOGIC;
-    POR_B : in STD_LOGIC;
-    ram_rstreg_b : in STD_LOGIC;
+    ram_rstram_b : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 11 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 9 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
@@ -4401,7 +4312,6 @@ begin
       ENA_I => ENA_I,
       ENB_I => ENB_I,
       POR_A => POR_A,
-      POR_B => POR_B,
       addra(11 downto 0) => addra(11 downto 0),
       addrb(9 downto 0) => addrb(9 downto 0),
       clka => clka,
@@ -4410,8 +4320,7 @@ begin
       dinb(31 downto 0) => dinb(31 downto 0),
       douta_array(7 downto 0) => douta_array(7 downto 0),
       ena => ena,
-      enb => enb,
-      ram_rstreg_b => ram_rstreg_b,
+      ram_rstram_b => ram_rstram_b,
       wea(0) => wea(0),
       web(3 downto 0) => web(3 downto 0)
     );
@@ -4429,10 +4338,8 @@ entity \design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized2\ is
     ENA_I : in STD_LOGIC;
     ENB_I : in STD_LOGIC;
     ena : in STD_LOGIC;
-    enb : in STD_LOGIC;
     POR_A : in STD_LOGIC;
-    POR_B : in STD_LOGIC;
-    ram_rstreg_b : in STD_LOGIC;
+    ram_rstram_b : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 11 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 9 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
@@ -4452,7 +4359,6 @@ begin
       ENA_I => ENA_I,
       ENB_I => ENB_I,
       POR_A => POR_A,
-      POR_B => POR_B,
       addra(11 downto 0) => addra(11 downto 0),
       addrb(9 downto 0) => addrb(9 downto 0),
       clka => clka,
@@ -4461,8 +4367,7 @@ begin
       dinb(31 downto 0) => dinb(31 downto 0),
       douta_array(7 downto 0) => douta_array(7 downto 0),
       ena => ena,
-      enb => enb,
-      ram_rstreg_b => ram_rstreg_b,
+      ram_rstram_b => ram_rstram_b,
       wea(0) => wea(0),
       web(3 downto 0) => web(3 downto 0)
     );
@@ -4480,10 +4385,8 @@ entity \design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized3\ is
     ENA_I : in STD_LOGIC;
     ENB_I : in STD_LOGIC;
     ena : in STD_LOGIC;
-    enb : in STD_LOGIC;
     POR_A : in STD_LOGIC;
-    POR_B : in STD_LOGIC;
-    ram_rstreg_b : in STD_LOGIC;
+    ram_rstram_b : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 11 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 9 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
@@ -4503,7 +4406,6 @@ begin
       ENA_I => ENA_I,
       ENB_I => ENB_I,
       POR_A => POR_A,
-      POR_B => POR_B,
       addra(11 downto 0) => addra(11 downto 0),
       addrb(9 downto 0) => addrb(9 downto 0),
       clka => clka,
@@ -4512,8 +4414,7 @@ begin
       dinb(31 downto 0) => dinb(31 downto 0),
       douta_array(7 downto 0) => douta_array(7 downto 0),
       ena => ena,
-      enb => enb,
-      ram_rstreg_b => ram_rstreg_b,
+      ram_rstram_b => ram_rstram_b,
       wea(0) => wea(0),
       web(3 downto 0) => web(3 downto 0)
     );
@@ -4531,10 +4432,8 @@ entity \design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized4\ is
     ENA_I : in STD_LOGIC;
     ENB_I : in STD_LOGIC;
     ena : in STD_LOGIC;
-    enb : in STD_LOGIC;
     POR_A : in STD_LOGIC;
-    POR_B : in STD_LOGIC;
-    ram_rstreg_b : in STD_LOGIC;
+    ram_rstram_b : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 11 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 9 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
@@ -4554,7 +4453,6 @@ begin
       ENA_I => ENA_I,
       ENB_I => ENB_I,
       POR_A => POR_A,
-      POR_B => POR_B,
       addra(11 downto 0) => addra(11 downto 0),
       addrb(9 downto 0) => addrb(9 downto 0),
       clka => clka,
@@ -4563,8 +4461,7 @@ begin
       dinb(31 downto 0) => dinb(31 downto 0),
       douta_array(7 downto 0) => douta_array(7 downto 0),
       ena => ena,
-      enb => enb,
-      ram_rstreg_b => ram_rstreg_b,
+      ram_rstram_b => ram_rstram_b,
       wea(0) => wea(0),
       web(3 downto 0) => web(3 downto 0)
     );
@@ -4582,10 +4479,8 @@ entity \design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized5\ is
     ENA_I : in STD_LOGIC;
     ENB_I : in STD_LOGIC;
     ena : in STD_LOGIC;
-    enb : in STD_LOGIC;
     POR_A : in STD_LOGIC;
-    POR_B : in STD_LOGIC;
-    ram_rstreg_b : in STD_LOGIC;
+    ram_rstram_b : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 11 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 9 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
@@ -4605,7 +4500,6 @@ begin
       ENA_I => ENA_I,
       ENB_I => ENB_I,
       POR_A => POR_A,
-      POR_B => POR_B,
       addra(11 downto 0) => addra(11 downto 0),
       addrb(9 downto 0) => addrb(9 downto 0),
       clka => clka,
@@ -4614,8 +4508,7 @@ begin
       dinb(31 downto 0) => dinb(31 downto 0),
       douta_array(7 downto 0) => douta_array(7 downto 0),
       ena => ena,
-      enb => enb,
-      ram_rstreg_b => ram_rstreg_b,
+      ram_rstram_b => ram_rstram_b,
       wea(0) => wea(0),
       web(3 downto 0) => web(3 downto 0)
     );
@@ -4629,7 +4522,7 @@ entity \design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized6\ is
     douta_array : out STD_LOGIC_VECTOR ( 7 downto 0 );
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram\ : out STD_LOGIC_VECTOR ( 31 downto 0 );
     \SAFETY_CKT_GEN.ENA_WITH_REG.ENA_dly_reg_reg_0\ : out STD_LOGIC;
-    \SAFETY_CKT_GEN.ENB_WITH_REG.ENB_dly_reg_reg_0\ : out STD_LOGIC;
+    \SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_reg_0\ : out STD_LOGIC;
     rsta_busy : out STD_LOGIC;
     rstb_busy : out STD_LOGIC;
     clka : in STD_LOGIC;
@@ -4637,10 +4530,8 @@ entity \design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized6\ is
     ENA_I : in STD_LOGIC;
     ENB_I : in STD_LOGIC;
     ena : in STD_LOGIC;
-    enb : in STD_LOGIC;
     POR_A : in STD_LOGIC;
-    POR_B : in STD_LOGIC;
-    ram_rstreg_b : in STD_LOGIC;
+    ram_rstram_b : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 11 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 9 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
@@ -4648,7 +4539,7 @@ entity \design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized6\ is
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     web : in STD_LOGIC_VECTOR ( 3 downto 0 );
     \SAFETY_CKT_GEN.RSTA_BUSY_WITH_REG.RSTA_BUSY_reg_0\ : in STD_LOGIC;
-    \SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_WITH_REG.RSTB_BUSY_reg_0\ : in STD_LOGIC
+    \SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_NO_REG.RSTB_BUSY_reg_0\ : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized6\ : entity is "blk_mem_gen_prim_width";
@@ -4667,15 +4558,15 @@ begin
       Q => \SAFETY_CKT_GEN.ENA_WITH_REG.ENA_dly_reg_reg_0\,
       R => '0'
     );
-\SAFETY_CKT_GEN.ENB_WITH_REG.ENB_dly_reg_reg\: unisim.vcomponents.FDRE
+\SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_reg\: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
     )
         port map (
       C => clkb,
       CE => '1',
-      D => ram_rstreg_b,
-      Q => \SAFETY_CKT_GEN.ENB_WITH_REG.ENB_dly_reg_reg_0\,
+      D => ram_rstram_b,
+      Q => \SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_reg_0\,
       R => '0'
     );
 \SAFETY_CKT_GEN.RSTA_BUSY_WITH_REG.RSTA_BUSY_reg\: unisim.vcomponents.FDRE
@@ -4686,11 +4577,11 @@ begin
       Q => rsta_busy,
       R => '0'
     );
-\SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_WITH_REG.RSTB_BUSY_reg\: unisim.vcomponents.FDRE
+\SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_NO_REG.RSTB_BUSY_reg\: unisim.vcomponents.FDRE
      port map (
       C => clkb,
       CE => '1',
-      D => \SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_WITH_REG.RSTB_BUSY_reg_0\,
+      D => \SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_NO_REG.RSTB_BUSY_reg_0\,
       Q => rstb_busy,
       R => '0'
     );
@@ -4700,7 +4591,6 @@ begin
       ENA_I => ENA_I,
       ENB_I => ENB_I,
       POR_A => POR_A,
-      POR_B => POR_B,
       addra(11 downto 0) => addra(11 downto 0),
       addrb(9 downto 0) => addrb(9 downto 0),
       clka => clka,
@@ -4709,8 +4599,7 @@ begin
       dinb(31 downto 0) => dinb(31 downto 0),
       douta_array(7 downto 0) => douta_array(7 downto 0),
       ena => ena,
-      enb => enb,
-      ram_rstreg_b => ram_rstreg_b,
+      ram_rstram_b => ram_rstram_b,
       wea(0) => wea(0),
       web(3 downto 0) => web(3 downto 0)
     );
@@ -4722,21 +4611,23 @@ use UNISIM.VCOMPONENTS.ALL;
 entity design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr is
   port (
     douta : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    doutb : out STD_LOGIC_VECTOR ( 31 downto 0 );
     rsta_busy : out STD_LOGIC;
     rstb_busy : out STD_LOGIC;
+    doutb : out STD_LOGIC_VECTOR ( 31 downto 0 );
     clkb : in STD_LOGIC;
     clka : in STD_LOGIC;
     ena : in STD_LOGIC;
-    enb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 12 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
     dinb : in STD_LOGIC_VECTOR ( 31 downto 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     web : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    enb : in STD_LOGIC;
     rstb : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr : entity is "blk_mem_gen_generic_cstr";
 end design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr;
 
 architecture STRUCTURE of design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr is
@@ -4755,7 +4646,6 @@ architecture STRUCTURE of design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr is
   signal ENB_I_8 : STD_LOGIC;
   signal ENB_I_9 : STD_LOGIC;
   signal POR_A : STD_LOGIC;
-  signal POR_B : STD_LOGIC;
   signal douta_array : STD_LOGIC_VECTOR ( 63 downto 0 );
   signal ram_doutb10_out : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal ram_doutb14_out : STD_LOGIC_VECTOR ( 31 downto 0 );
@@ -4764,9 +4654,9 @@ architecture STRUCTURE of design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr is
   signal ram_doutb26_out : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal ram_doutb30_out : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal ram_doutb6_out : STD_LOGIC_VECTOR ( 31 downto 0 );
-  signal ram_rstreg_b : STD_LOGIC;
-  signal \ramloop[0].ram.r_n_43\ : STD_LOGIC;
-  signal \ramloop[0].ram.r_n_58\ : STD_LOGIC;
+  signal ram_rstram_b : STD_LOGIC;
+  signal \ramloop[0].ram.r_n_42\ : STD_LOGIC;
+  signal \ramloop[0].ram.r_n_57\ : STD_LOGIC;
   signal \ramloop[7].ram.r_n_10\ : STD_LOGIC;
   signal \ramloop[7].ram.r_n_11\ : STD_LOGIC;
   signal \ramloop[7].ram.r_n_12\ : STD_LOGIC;
@@ -4874,11 +4764,10 @@ begin
       ENB_I_4 => ENB_I_6,
       ENB_I_5 => ENB_I,
       POR_A => POR_A,
-      POR_B => POR_B,
       \SAFETY_CKT_GEN.ENA_WITH_REG.ENA_dly_reg_D_reg_0\ => \ramloop[7].ram.r_n_40\,
-      \SAFETY_CKT_GEN.ENB_WITH_REG.ENB_dly_reg_D_reg_0\ => \ramloop[7].ram.r_n_41\,
-      \SAFETY_CKT_GEN.POR_A_reg_0\ => \ramloop[0].ram.r_n_58\,
-      \SAFETY_CKT_GEN.POR_B_reg_0\ => \ramloop[0].ram.r_n_43\,
+      \SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_D_reg_0\ => \ramloop[7].ram.r_n_41\,
+      \SAFETY_CKT_GEN.POR_A_reg_0\ => \ramloop[0].ram.r_n_57\,
+      \SAFETY_CKT_GEN.POR_B_reg_0\ => \ramloop[0].ram.r_n_42\,
       addra(14 downto 0) => addra(14 downto 0),
       addrb(12 downto 0) => addrb(12 downto 0),
       clka => clka,
@@ -4888,7 +4777,7 @@ begin
       douta_array(7 downto 0) => douta_array(7 downto 0),
       ena => ena,
       enb => enb,
-      ram_rstreg_b => ram_rstreg_b,
+      ram_rstram_b => ram_rstram_b,
       rstb => rstb,
       wea(0) => wea(0),
       web(3 downto 0) => web(3 downto 0)
@@ -4899,7 +4788,6 @@ begin
       ENA_I => ENA_I_5,
       ENB_I => ENB_I_11,
       POR_A => POR_A,
-      POR_B => POR_B,
       addra(11 downto 0) => addra(11 downto 0),
       addrb(9 downto 0) => addrb(9 downto 0),
       clka => clka,
@@ -4908,8 +4796,7 @@ begin
       dinb(31 downto 0) => dinb(31 downto 0),
       douta_array(7 downto 0) => douta_array(15 downto 8),
       ena => ena,
-      enb => enb,
-      ram_rstreg_b => ram_rstreg_b,
+      ram_rstram_b => ram_rstram_b,
       wea(0) => wea(0),
       web(3 downto 0) => web(3 downto 0)
     );
@@ -4919,7 +4806,6 @@ begin
       ENA_I => ENA_I_4,
       ENB_I => ENB_I_10,
       POR_A => POR_A,
-      POR_B => POR_B,
       addra(11 downto 0) => addra(11 downto 0),
       addrb(9 downto 0) => addrb(9 downto 0),
       clka => clka,
@@ -4928,8 +4814,7 @@ begin
       dinb(31 downto 0) => dinb(31 downto 0),
       douta_array(7 downto 0) => douta_array(23 downto 16),
       ena => ena,
-      enb => enb,
-      ram_rstreg_b => ram_rstreg_b,
+      ram_rstram_b => ram_rstram_b,
       wea(0) => wea(0),
       web(3 downto 0) => web(3 downto 0)
     );
@@ -4939,7 +4824,6 @@ begin
       ENA_I => ENA_I_3,
       ENB_I => ENB_I_9,
       POR_A => POR_A,
-      POR_B => POR_B,
       addra(11 downto 0) => addra(11 downto 0),
       addrb(9 downto 0) => addrb(9 downto 0),
       clka => clka,
@@ -4948,8 +4832,7 @@ begin
       dinb(31 downto 0) => dinb(31 downto 0),
       douta_array(7 downto 0) => douta_array(31 downto 24),
       ena => ena,
-      enb => enb,
-      ram_rstreg_b => ram_rstreg_b,
+      ram_rstram_b => ram_rstram_b,
       wea(0) => wea(0),
       web(3 downto 0) => web(3 downto 0)
     );
@@ -4959,7 +4842,6 @@ begin
       ENA_I => ENA_I_2,
       ENB_I => ENB_I_8,
       POR_A => POR_A,
-      POR_B => POR_B,
       addra(11 downto 0) => addra(11 downto 0),
       addrb(9 downto 0) => addrb(9 downto 0),
       clka => clka,
@@ -4968,8 +4850,7 @@ begin
       dinb(31 downto 0) => dinb(31 downto 0),
       douta_array(7 downto 0) => douta_array(39 downto 32),
       ena => ena,
-      enb => enb,
-      ram_rstreg_b => ram_rstreg_b,
+      ram_rstram_b => ram_rstram_b,
       wea(0) => wea(0),
       web(3 downto 0) => web(3 downto 0)
     );
@@ -4979,7 +4860,6 @@ begin
       ENA_I => ENA_I_1,
       ENB_I => ENB_I_7,
       POR_A => POR_A,
-      POR_B => POR_B,
       addra(11 downto 0) => addra(11 downto 0),
       addrb(9 downto 0) => addrb(9 downto 0),
       clka => clka,
@@ -4988,8 +4868,7 @@ begin
       dinb(31 downto 0) => dinb(31 downto 0),
       douta_array(7 downto 0) => douta_array(47 downto 40),
       ena => ena,
-      enb => enb,
-      ram_rstreg_b => ram_rstreg_b,
+      ram_rstram_b => ram_rstram_b,
       wea(0) => wea(0),
       web(3 downto 0) => web(3 downto 0)
     );
@@ -4999,7 +4878,6 @@ begin
       ENA_I => ENA_I_0,
       ENB_I => ENB_I_6,
       POR_A => POR_A,
-      POR_B => POR_B,
       addra(11 downto 0) => addra(11 downto 0),
       addrb(9 downto 0) => addrb(9 downto 0),
       clka => clka,
@@ -5008,8 +4886,7 @@ begin
       dinb(31 downto 0) => dinb(31 downto 0),
       douta_array(7 downto 0) => douta_array(55 downto 48),
       ena => ena,
-      enb => enb,
-      ram_rstreg_b => ram_rstreg_b,
+      ram_rstram_b => ram_rstram_b,
       wea(0) => wea(0),
       web(3 downto 0) => web(3 downto 0)
     );
@@ -5050,11 +4927,10 @@ begin
       ENA_I => ENA_I,
       ENB_I => ENB_I,
       POR_A => POR_A,
-      POR_B => POR_B,
       \SAFETY_CKT_GEN.ENA_WITH_REG.ENA_dly_reg_reg_0\ => \ramloop[7].ram.r_n_40\,
-      \SAFETY_CKT_GEN.ENB_WITH_REG.ENB_dly_reg_reg_0\ => \ramloop[7].ram.r_n_41\,
-      \SAFETY_CKT_GEN.RSTA_BUSY_WITH_REG.RSTA_BUSY_reg_0\ => \ramloop[0].ram.r_n_58\,
-      \SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_WITH_REG.RSTB_BUSY_reg_0\ => \ramloop[0].ram.r_n_43\,
+      \SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_reg_0\ => \ramloop[7].ram.r_n_41\,
+      \SAFETY_CKT_GEN.RSTA_BUSY_WITH_REG.RSTA_BUSY_reg_0\ => \ramloop[0].ram.r_n_57\,
+      \SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_NO_REG.RSTB_BUSY_reg_0\ => \ramloop[0].ram.r_n_42\,
       addra(11 downto 0) => addra(11 downto 0),
       addrb(9 downto 0) => addrb(9 downto 0),
       clka => clka,
@@ -5063,8 +4939,7 @@ begin
       dinb(31 downto 0) => dinb(31 downto 0),
       douta_array(7 downto 0) => douta_array(63 downto 56),
       ena => ena,
-      enb => enb,
-      ram_rstreg_b => ram_rstreg_b,
+      ram_rstram_b => ram_rstram_b,
       rsta_busy => rsta_busy,
       rstb_busy => rstb_busy,
       wea(0) => wea(0),
@@ -5078,21 +4953,23 @@ use UNISIM.VCOMPONENTS.ALL;
 entity design_1_blk_mem_gen_0_0_blk_mem_gen_top is
   port (
     douta : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    doutb : out STD_LOGIC_VECTOR ( 31 downto 0 );
     rsta_busy : out STD_LOGIC;
     rstb_busy : out STD_LOGIC;
+    doutb : out STD_LOGIC_VECTOR ( 31 downto 0 );
     clkb : in STD_LOGIC;
     clka : in STD_LOGIC;
     ena : in STD_LOGIC;
-    enb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 12 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
     dinb : in STD_LOGIC_VECTOR ( 31 downto 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     web : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    enb : in STD_LOGIC;
     rstb : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_blk_mem_gen_0_0_blk_mem_gen_top : entity is "blk_mem_gen_top";
 end design_1_blk_mem_gen_0_0_blk_mem_gen_top;
 
 architecture STRUCTURE of design_1_blk_mem_gen_0_0_blk_mem_gen_top is
@@ -5123,21 +5000,23 @@ use UNISIM.VCOMPONENTS.ALL;
 entity design_1_blk_mem_gen_0_0_blk_mem_gen_v8_4_3_synth is
   port (
     douta : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    doutb : out STD_LOGIC_VECTOR ( 31 downto 0 );
     rsta_busy : out STD_LOGIC;
     rstb_busy : out STD_LOGIC;
+    doutb : out STD_LOGIC_VECTOR ( 31 downto 0 );
     clkb : in STD_LOGIC;
     clka : in STD_LOGIC;
     ena : in STD_LOGIC;
-    enb : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 14 downto 0 );
     addrb : in STD_LOGIC_VECTOR ( 12 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 7 downto 0 );
     dinb : in STD_LOGIC_VECTOR ( 31 downto 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     web : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    enb : in STD_LOGIC;
     rstb : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_blk_mem_gen_0_0_blk_mem_gen_v8_4_3_synth : entity is "blk_mem_gen_v8_4_3_synth";
 end design_1_blk_mem_gen_0_0_blk_mem_gen_v8_4_3_synth;
 
 architecture STRUCTURE of design_1_blk_mem_gen_0_0_blk_mem_gen_v8_4_3_synth is
@@ -5292,7 +5171,7 @@ entity design_1_blk_mem_gen_0_0_blk_mem_gen_v8_4_3 is
   attribute C_HAS_MEM_OUTPUT_REGS_A : integer;
   attribute C_HAS_MEM_OUTPUT_REGS_A of design_1_blk_mem_gen_0_0_blk_mem_gen_v8_4_3 : entity is 1;
   attribute C_HAS_MEM_OUTPUT_REGS_B : integer;
-  attribute C_HAS_MEM_OUTPUT_REGS_B of design_1_blk_mem_gen_0_0_blk_mem_gen_v8_4_3 : entity is 1;
+  attribute C_HAS_MEM_OUTPUT_REGS_B of design_1_blk_mem_gen_0_0_blk_mem_gen_v8_4_3 : entity is 0;
   attribute C_HAS_MUX_OUTPUT_REGS_A : integer;
   attribute C_HAS_MUX_OUTPUT_REGS_A of design_1_blk_mem_gen_0_0_blk_mem_gen_v8_4_3 : entity is 0;
   attribute C_HAS_MUX_OUTPUT_REGS_B : integer;
@@ -5381,6 +5260,8 @@ entity design_1_blk_mem_gen_0_0_blk_mem_gen_v8_4_3 is
   attribute C_WRITE_WIDTH_B of design_1_blk_mem_gen_0_0_blk_mem_gen_v8_4_3 : entity is 32;
   attribute C_XDEVICEFAMILY : string;
   attribute C_XDEVICEFAMILY of design_1_blk_mem_gen_0_0_blk_mem_gen_v8_4_3 : entity is "zynq";
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of design_1_blk_mem_gen_0_0_blk_mem_gen_v8_4_3 : entity is "blk_mem_gen_v8_4_3";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of design_1_blk_mem_gen_0_0_blk_mem_gen_v8_4_3 : entity is "yes";
 end design_1_blk_mem_gen_0_0_blk_mem_gen_v8_4_3;
@@ -5602,7 +5483,7 @@ architecture STRUCTURE of design_1_blk_mem_gen_0_0 is
   attribute C_HAS_MEM_OUTPUT_REGS_A : integer;
   attribute C_HAS_MEM_OUTPUT_REGS_A of U0 : label is 1;
   attribute C_HAS_MEM_OUTPUT_REGS_B : integer;
-  attribute C_HAS_MEM_OUTPUT_REGS_B of U0 : label is 1;
+  attribute C_HAS_MEM_OUTPUT_REGS_B of U0 : label is 0;
   attribute C_HAS_MUX_OUTPUT_REGS_A : integer;
   attribute C_HAS_MUX_OUTPUT_REGS_A of U0 : label is 0;
   attribute C_HAS_MUX_OUTPUT_REGS_B : integer;

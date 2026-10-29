@@ -1,7 +1,7 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-//Date        : Wed Oct 28 10:52:27 2026
+//Date        : Thu Oct 29 10:02:22 2026
 //Host        : maruf-ThinkPad-T470p running 64-bit Ubuntu 24.04.3 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=6,numReposBlks=6,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=1,da_bram_cntlr_cnt=1,da_ps7_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=7,numReposBlks=7,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=1,da_bram_cntlr_cnt=1,da_ps7_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
    (DDR_addr,
     DDR_ba,
@@ -58,13 +58,12 @@ module design_1
   input [7:0]uart_rx_0;
   output [7:0]uart_tx_0;
 
-  wire [14:0]axi_bram_ctrl_0_BRAM_PORTA_ADDR;
-  wire axi_bram_ctrl_0_BRAM_PORTA_CLK;
-  wire [31:0]axi_bram_ctrl_0_BRAM_PORTA_DIN;
-  wire [31:0]axi_bram_ctrl_0_BRAM_PORTA_DOUT;
-  wire axi_bram_ctrl_0_BRAM_PORTA_EN;
-  wire axi_bram_ctrl_0_BRAM_PORTA_RST;
-  wire [3:0]axi_bram_ctrl_0_BRAM_PORTA_WE;
+  wire [14:0]axi_bram_ctrl_0_bram_addr_a;
+  wire axi_bram_ctrl_0_bram_clk_a;
+  wire axi_bram_ctrl_0_bram_en_a;
+  wire axi_bram_ctrl_0_bram_rst_a;
+  wire [3:0]axi_bram_ctrl_0_bram_we_a;
+  wire [31:0]axi_bram_ctrl_0_bram_wrdata_a;
   wire [14:0]axi_smc_M00_AXI_ARADDR;
   wire [1:0]axi_smc_M00_AXI_ARBURST;
   wire [3:0]axi_smc_M00_AXI_ARCACHE;
@@ -97,6 +96,7 @@ module design_1
   wire [3:0]axi_smc_M00_AXI_WSTRB;
   wire axi_smc_M00_AXI_WVALID;
   wire [7:0]blk_mem_gen_0_douta;
+  wire [31:0]blk_mem_gen_0_doutb;
   wire [14:0]processing_system7_0_DDR_ADDR;
   wire [2:0]processing_system7_0_DDR_BA;
   wire processing_system7_0_DDR_CAS_N;
@@ -165,19 +165,20 @@ module design_1
   wire [0:0]uart8_bram_controller_0_bram_we;
   wire [7:0]uart8_bram_controller_0_uart_tx;
   wire [7:0]uart_rx_0_1;
+  wire [12:0]xlslice_0_Dout;
 
   assign uart_rx_0_1 = uart_rx_0[7:0];
   assign uart_tx_0[7:0] = uart8_bram_controller_0_uart_tx;
   (* BMM_INFO_ADDRESS_SPACE = "byte  0x40000000 32 > design_1 blk_mem_gen_0" *) 
   (* KEEP_HIERARCHY = "yes" *) 
   design_1_axi_bram_ctrl_0_0 axi_bram_ctrl_0
-       (.bram_addr_a(axi_bram_ctrl_0_BRAM_PORTA_ADDR),
-        .bram_clk_a(axi_bram_ctrl_0_BRAM_PORTA_CLK),
-        .bram_en_a(axi_bram_ctrl_0_BRAM_PORTA_EN),
-        .bram_rddata_a(axi_bram_ctrl_0_BRAM_PORTA_DOUT),
-        .bram_rst_a(axi_bram_ctrl_0_BRAM_PORTA_RST),
-        .bram_we_a(axi_bram_ctrl_0_BRAM_PORTA_WE),
-        .bram_wrdata_a(axi_bram_ctrl_0_BRAM_PORTA_DIN),
+       (.bram_addr_a(axi_bram_ctrl_0_bram_addr_a),
+        .bram_clk_a(axi_bram_ctrl_0_bram_clk_a),
+        .bram_en_a(axi_bram_ctrl_0_bram_en_a),
+        .bram_rddata_a(blk_mem_gen_0_doutb),
+        .bram_rst_a(axi_bram_ctrl_0_bram_rst_a),
+        .bram_we_a(axi_bram_ctrl_0_bram_we_a),
+        .bram_wrdata_a(axi_bram_ctrl_0_bram_wrdata_a),
         .s_axi_aclk(processing_system7_0_FCLK_CLK0),
         .s_axi_araddr(axi_smc_M00_AXI_ARADDR),
         .s_axi_arburst(axi_smc_M00_AXI_ARBURST),
@@ -285,18 +286,18 @@ module design_1
         .aresetn(rst_ps7_0_50M_peripheral_aresetn));
   design_1_blk_mem_gen_0_0 blk_mem_gen_0
        (.addra(uart8_bram_controller_0_bram_addr),
-        .addrb(axi_bram_ctrl_0_BRAM_PORTA_ADDR[12:0]),
+        .addrb(xlslice_0_Dout),
         .clka(processing_system7_0_FCLK_CLK0),
-        .clkb(axi_bram_ctrl_0_BRAM_PORTA_CLK),
+        .clkb(axi_bram_ctrl_0_bram_clk_a),
         .dina(uart8_bram_controller_0_bram_din),
-        .dinb(axi_bram_ctrl_0_BRAM_PORTA_DIN),
+        .dinb(axi_bram_ctrl_0_bram_wrdata_a),
         .douta(blk_mem_gen_0_douta),
-        .doutb(axi_bram_ctrl_0_BRAM_PORTA_DOUT),
+        .doutb(blk_mem_gen_0_doutb),
         .ena(uart8_bram_controller_0_bram_en),
-        .enb(axi_bram_ctrl_0_BRAM_PORTA_EN),
-        .rstb(axi_bram_ctrl_0_BRAM_PORTA_RST),
+        .enb(axi_bram_ctrl_0_bram_en_a),
+        .rstb(axi_bram_ctrl_0_bram_rst_a),
         .wea(uart8_bram_controller_0_bram_we),
-        .web(axi_bram_ctrl_0_BRAM_PORTA_WE));
+        .web(axi_bram_ctrl_0_bram_we_a));
   (* BMM_INFO_PROCESSOR = "arm > design_1 axi_bram_ctrl_0" *) 
   (* KEEP_HIERARCHY = "yes" *) 
   design_1_processing_system7_0_0 processing_system7_0
@@ -379,4 +380,7 @@ module design_1
         .rst_n(rst_ps7_0_50M_peripheral_aresetn),
         .uart_rx(uart_rx_0_1),
         .uart_tx(uart8_bram_controller_0_uart_tx));
+  design_1_xlslice_0_0 xlslice_0
+       (.Din(axi_bram_ctrl_0_bram_addr_a),
+        .Dout(xlslice_0_Dout));
 endmodule

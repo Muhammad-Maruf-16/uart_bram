@@ -1,10 +1,10 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-// Date        : Wed Oct 28 10:48:00 2026
+// Date        : Thu Oct 29 10:04:27 2026
 // Host        : maruf-ThinkPad-T470p running 64-bit Ubuntu 24.04.3 LTS
-// Command     : write_verilog -force -mode funcsim -rename_top design_1_blk_mem_gen_0_0 -prefix
-//               design_1_blk_mem_gen_0_0_ design_1_blk_mem_gen_0_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim
+//               /home/maruf/fpga_ebaz4205/uart_bram/uart_bram.srcs/sources_1/bd/design_1/ip/design_1_blk_mem_gen_0_0/design_1_blk_mem_gen_0_0_sim_netlist.v
 // Design      : design_1_blk_mem_gen_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -109,7 +109,7 @@ module design_1_blk_mem_gen_0_0
   (* C_HAS_ENB = "1" *) 
   (* C_HAS_INJECTERR = "0" *) 
   (* C_HAS_MEM_OUTPUT_REGS_A = "1" *) 
-  (* C_HAS_MEM_OUTPUT_REGS_B = "1" *) 
+  (* C_HAS_MEM_OUTPUT_REGS_B = "0" *) 
   (* C_HAS_MUX_OUTPUT_REGS_A = "0" *) 
   (* C_HAS_MUX_OUTPUT_REGS_B = "0" *) 
   (* C_HAS_REGCEA = "0" *) 
@@ -221,36 +221,37 @@ module design_1_blk_mem_gen_0_0
         .web(web));
 endmodule
 
+(* ORIG_REF_NAME = "blk_mem_gen_generic_cstr" *) 
 module design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr
    (douta,
-    doutb,
     rsta_busy,
     rstb_busy,
+    doutb,
     clkb,
     clka,
     ena,
-    enb,
     addra,
     addrb,
     dina,
     dinb,
     wea,
     web,
+    enb,
     rstb);
   output [7:0]douta;
-  output [31:0]doutb;
   output rsta_busy;
   output rstb_busy;
+  output [31:0]doutb;
   input clkb;
   input clka;
   input ena;
-  input enb;
   input [14:0]addra;
   input [12:0]addrb;
   input [7:0]dina;
   input [31:0]dinb;
   input [0:0]wea;
   input [3:0]web;
+  input enb;
   input rstb;
 
   wire ENA_I;
@@ -268,7 +269,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr
   wire ENB_I_8;
   wire ENB_I_9;
   wire POR_A;
-  wire POR_B;
   wire [14:0]addra;
   wire [12:0]addrb;
   wire clka;
@@ -287,9 +287,9 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr
   wire [31:0]ram_doutb26_out;
   wire [31:0]ram_doutb30_out;
   wire [31:0]ram_doutb6_out;
-  wire ram_rstreg_b;
-  wire \ramloop[0].ram.r_n_43 ;
-  wire \ramloop[0].ram.r_n_58 ;
+  wire ram_rstram_b;
+  wire \ramloop[0].ram.r_n_42 ;
+  wire \ramloop[0].ram.r_n_57 ;
   wire \ramloop[7].ram.r_n_10 ;
   wire \ramloop[7].ram.r_n_11 ;
   wire \ramloop[7].ram.r_n_12 ;
@@ -366,11 +366,10 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr
         .ENB_I_4(ENB_I_6),
         .ENB_I_5(ENB_I),
         .POR_A(POR_A),
-        .POR_B(POR_B),
         .\SAFETY_CKT_GEN.ENA_WITH_REG.ENA_dly_reg_D_reg_0 (\ramloop[7].ram.r_n_40 ),
-        .\SAFETY_CKT_GEN.ENB_WITH_REG.ENB_dly_reg_D_reg_0 (\ramloop[7].ram.r_n_41 ),
-        .\SAFETY_CKT_GEN.POR_A_reg_0 (\ramloop[0].ram.r_n_58 ),
-        .\SAFETY_CKT_GEN.POR_B_reg_0 (\ramloop[0].ram.r_n_43 ),
+        .\SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_D_reg_0 (\ramloop[7].ram.r_n_41 ),
+        .\SAFETY_CKT_GEN.POR_A_reg_0 (\ramloop[0].ram.r_n_57 ),
+        .\SAFETY_CKT_GEN.POR_B_reg_0 (\ramloop[0].ram.r_n_42 ),
         .addra(addra),
         .addrb(addrb),
         .clka(clka),
@@ -380,7 +379,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr
         .douta_array(douta_array[7:0]),
         .ena(ena),
         .enb(enb),
-        .ram_rstreg_b(ram_rstreg_b),
+        .ram_rstram_b(ram_rstram_b),
         .rstb(rstb),
         .wea(wea),
         .web(web));
@@ -389,7 +388,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr
         .ENA_I(ENA_I_5),
         .ENB_I(ENB_I_11),
         .POR_A(POR_A),
-        .POR_B(POR_B),
         .addra(addra[11:0]),
         .addrb(addrb[9:0]),
         .clka(clka),
@@ -398,8 +396,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr
         .dinb(dinb),
         .douta_array(douta_array[15:8]),
         .ena(ena),
-        .enb(enb),
-        .ram_rstreg_b(ram_rstreg_b),
+        .ram_rstram_b(ram_rstram_b),
         .wea(wea),
         .web(web));
   design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized1 \ramloop[2].ram.r 
@@ -407,7 +404,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr
         .ENA_I(ENA_I_4),
         .ENB_I(ENB_I_10),
         .POR_A(POR_A),
-        .POR_B(POR_B),
         .addra(addra[11:0]),
         .addrb(addrb[9:0]),
         .clka(clka),
@@ -416,8 +412,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr
         .dinb(dinb),
         .douta_array(douta_array[23:16]),
         .ena(ena),
-        .enb(enb),
-        .ram_rstreg_b(ram_rstreg_b),
+        .ram_rstram_b(ram_rstram_b),
         .wea(wea),
         .web(web));
   design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized2 \ramloop[3].ram.r 
@@ -425,7 +420,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr
         .ENA_I(ENA_I_3),
         .ENB_I(ENB_I_9),
         .POR_A(POR_A),
-        .POR_B(POR_B),
         .addra(addra[11:0]),
         .addrb(addrb[9:0]),
         .clka(clka),
@@ -434,8 +428,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr
         .dinb(dinb),
         .douta_array(douta_array[31:24]),
         .ena(ena),
-        .enb(enb),
-        .ram_rstreg_b(ram_rstreg_b),
+        .ram_rstram_b(ram_rstram_b),
         .wea(wea),
         .web(web));
   design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized3 \ramloop[4].ram.r 
@@ -443,7 +436,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr
         .ENA_I(ENA_I_2),
         .ENB_I(ENB_I_8),
         .POR_A(POR_A),
-        .POR_B(POR_B),
         .addra(addra[11:0]),
         .addrb(addrb[9:0]),
         .clka(clka),
@@ -452,8 +444,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr
         .dinb(dinb),
         .douta_array(douta_array[39:32]),
         .ena(ena),
-        .enb(enb),
-        .ram_rstreg_b(ram_rstreg_b),
+        .ram_rstram_b(ram_rstram_b),
         .wea(wea),
         .web(web));
   design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized4 \ramloop[5].ram.r 
@@ -461,7 +452,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr
         .ENA_I(ENA_I_1),
         .ENB_I(ENB_I_7),
         .POR_A(POR_A),
-        .POR_B(POR_B),
         .addra(addra[11:0]),
         .addrb(addrb[9:0]),
         .clka(clka),
@@ -470,8 +460,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr
         .dinb(dinb),
         .douta_array(douta_array[47:40]),
         .ena(ena),
-        .enb(enb),
-        .ram_rstreg_b(ram_rstreg_b),
+        .ram_rstram_b(ram_rstram_b),
         .wea(wea),
         .web(web));
   design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized5 \ramloop[6].ram.r 
@@ -479,7 +468,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr
         .ENA_I(ENA_I_0),
         .ENB_I(ENB_I_6),
         .POR_A(POR_A),
-        .POR_B(POR_B),
         .addra(addra[11:0]),
         .addrb(addrb[9:0]),
         .clka(clka),
@@ -488,8 +476,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr
         .dinb(dinb),
         .douta_array(douta_array[55:48]),
         .ena(ena),
-        .enb(enb),
-        .ram_rstreg_b(ram_rstreg_b),
+        .ram_rstram_b(ram_rstram_b),
         .wea(wea),
         .web(web));
   design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized6 \ramloop[7].ram.r 
@@ -497,11 +484,10 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr
         .ENA_I(ENA_I),
         .ENB_I(ENB_I),
         .POR_A(POR_A),
-        .POR_B(POR_B),
         .\SAFETY_CKT_GEN.ENA_WITH_REG.ENA_dly_reg_reg_0 (\ramloop[7].ram.r_n_40 ),
-        .\SAFETY_CKT_GEN.ENB_WITH_REG.ENB_dly_reg_reg_0 (\ramloop[7].ram.r_n_41 ),
-        .\SAFETY_CKT_GEN.RSTA_BUSY_WITH_REG.RSTA_BUSY_reg_0 (\ramloop[0].ram.r_n_58 ),
-        .\SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_WITH_REG.RSTB_BUSY_reg_0 (\ramloop[0].ram.r_n_43 ),
+        .\SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_reg_0 (\ramloop[7].ram.r_n_41 ),
+        .\SAFETY_CKT_GEN.RSTA_BUSY_WITH_REG.RSTA_BUSY_reg_0 (\ramloop[0].ram.r_n_57 ),
+        .\SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_NO_REG.RSTB_BUSY_reg_0 (\ramloop[0].ram.r_n_42 ),
         .addra(addra[11:0]),
         .addrb(addrb[9:0]),
         .clka(clka),
@@ -510,14 +496,14 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_generic_cstr
         .dinb(dinb),
         .douta_array(douta_array[63:56]),
         .ena(ena),
-        .enb(enb),
-        .ram_rstreg_b(ram_rstreg_b),
+        .ram_rstram_b(ram_rstram_b),
         .rsta_busy(rsta_busy),
         .rstb_busy(rstb_busy),
         .wea(wea),
         .web(web));
 endmodule
 
+(* ORIG_REF_NAME = "blk_mem_gen_mux" *) 
 module design_1_blk_mem_gen_0_0_blk_mem_gen_mux
    (douta,
     ena,
@@ -907,12 +893,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
   wire \doutb[9]_INST_0_i_1_n_0 ;
   wire \doutb[9]_INST_0_i_2_n_0 ;
   wire enb;
-  wire \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[0]_i_1_n_0 ;
-  wire \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[1]_i_1_n_0 ;
-  wire \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[2]_i_1_n_0 ;
-  wire \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ;
-  wire \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ;
-  wire \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ;
   wire \no_softecc_sel_reg.ce_pri.sel_pipe[0]_i_1_n_0 ;
   wire \no_softecc_sel_reg.ce_pri.sel_pipe[1]_i_1_n_0 ;
   wire \no_softecc_sel_reg.ce_pri.sel_pipe[2]_i_1_n_0 ;
@@ -924,15 +904,15 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
        (.I0(\doutb[0]_INST_0_i_1_n_0 ),
         .I1(\doutb[0]_INST_0_i_2_n_0 ),
         .O(doutb[0]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[0]_INST_0_i_1 
        (.I0(DOBDO[0]),
         .I1(\doutb[31] [0]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [0]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [0]),
         .O(\doutb[0]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -940,24 +920,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[0]_INST_0_i_2 
        (.I0(\doutb[31]_2 [0]),
         .I1(\doutb[31]_3 [0]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [0]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [0]),
         .O(\doutb[0]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[10]_INST_0 
        (.I0(\doutb[10]_INST_0_i_1_n_0 ),
         .I1(\doutb[10]_INST_0_i_2_n_0 ),
         .O(doutb[10]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[10]_INST_0_i_1 
        (.I0(DOBDO[10]),
         .I1(\doutb[31] [10]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [10]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [10]),
         .O(\doutb[10]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -965,24 +945,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[10]_INST_0_i_2 
        (.I0(\doutb[31]_2 [10]),
         .I1(\doutb[31]_3 [10]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [10]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [10]),
         .O(\doutb[10]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[11]_INST_0 
        (.I0(\doutb[11]_INST_0_i_1_n_0 ),
         .I1(\doutb[11]_INST_0_i_2_n_0 ),
         .O(doutb[11]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[11]_INST_0_i_1 
        (.I0(DOBDO[11]),
         .I1(\doutb[31] [11]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [11]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [11]),
         .O(\doutb[11]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -990,24 +970,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[11]_INST_0_i_2 
        (.I0(\doutb[31]_2 [11]),
         .I1(\doutb[31]_3 [11]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [11]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [11]),
         .O(\doutb[11]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[12]_INST_0 
        (.I0(\doutb[12]_INST_0_i_1_n_0 ),
         .I1(\doutb[12]_INST_0_i_2_n_0 ),
         .O(doutb[12]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[12]_INST_0_i_1 
        (.I0(DOBDO[12]),
         .I1(\doutb[31] [12]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [12]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [12]),
         .O(\doutb[12]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1015,24 +995,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[12]_INST_0_i_2 
        (.I0(\doutb[31]_2 [12]),
         .I1(\doutb[31]_3 [12]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [12]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [12]),
         .O(\doutb[12]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[13]_INST_0 
        (.I0(\doutb[13]_INST_0_i_1_n_0 ),
         .I1(\doutb[13]_INST_0_i_2_n_0 ),
         .O(doutb[13]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[13]_INST_0_i_1 
        (.I0(DOBDO[13]),
         .I1(\doutb[31] [13]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [13]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [13]),
         .O(\doutb[13]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1040,24 +1020,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[13]_INST_0_i_2 
        (.I0(\doutb[31]_2 [13]),
         .I1(\doutb[31]_3 [13]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [13]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [13]),
         .O(\doutb[13]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[14]_INST_0 
        (.I0(\doutb[14]_INST_0_i_1_n_0 ),
         .I1(\doutb[14]_INST_0_i_2_n_0 ),
         .O(doutb[14]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[14]_INST_0_i_1 
        (.I0(DOBDO[14]),
         .I1(\doutb[31] [14]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [14]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [14]),
         .O(\doutb[14]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1065,24 +1045,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[14]_INST_0_i_2 
        (.I0(\doutb[31]_2 [14]),
         .I1(\doutb[31]_3 [14]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [14]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [14]),
         .O(\doutb[14]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[15]_INST_0 
        (.I0(\doutb[15]_INST_0_i_1_n_0 ),
         .I1(\doutb[15]_INST_0_i_2_n_0 ),
         .O(doutb[15]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[15]_INST_0_i_1 
        (.I0(DOBDO[15]),
         .I1(\doutb[31] [15]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [15]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [15]),
         .O(\doutb[15]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1090,24 +1070,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[15]_INST_0_i_2 
        (.I0(\doutb[31]_2 [15]),
         .I1(\doutb[31]_3 [15]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [15]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [15]),
         .O(\doutb[15]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[16]_INST_0 
        (.I0(\doutb[16]_INST_0_i_1_n_0 ),
         .I1(\doutb[16]_INST_0_i_2_n_0 ),
         .O(doutb[16]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[16]_INST_0_i_1 
        (.I0(DOBDO[16]),
         .I1(\doutb[31] [16]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [16]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [16]),
         .O(\doutb[16]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1115,24 +1095,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[16]_INST_0_i_2 
        (.I0(\doutb[31]_2 [16]),
         .I1(\doutb[31]_3 [16]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [16]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [16]),
         .O(\doutb[16]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[17]_INST_0 
        (.I0(\doutb[17]_INST_0_i_1_n_0 ),
         .I1(\doutb[17]_INST_0_i_2_n_0 ),
         .O(doutb[17]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[17]_INST_0_i_1 
        (.I0(DOBDO[17]),
         .I1(\doutb[31] [17]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [17]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [17]),
         .O(\doutb[17]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1140,24 +1120,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[17]_INST_0_i_2 
        (.I0(\doutb[31]_2 [17]),
         .I1(\doutb[31]_3 [17]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [17]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [17]),
         .O(\doutb[17]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[18]_INST_0 
        (.I0(\doutb[18]_INST_0_i_1_n_0 ),
         .I1(\doutb[18]_INST_0_i_2_n_0 ),
         .O(doutb[18]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[18]_INST_0_i_1 
        (.I0(DOBDO[18]),
         .I1(\doutb[31] [18]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [18]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [18]),
         .O(\doutb[18]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1165,24 +1145,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[18]_INST_0_i_2 
        (.I0(\doutb[31]_2 [18]),
         .I1(\doutb[31]_3 [18]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [18]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [18]),
         .O(\doutb[18]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[19]_INST_0 
        (.I0(\doutb[19]_INST_0_i_1_n_0 ),
         .I1(\doutb[19]_INST_0_i_2_n_0 ),
         .O(doutb[19]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[19]_INST_0_i_1 
        (.I0(DOBDO[19]),
         .I1(\doutb[31] [19]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [19]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [19]),
         .O(\doutb[19]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1190,24 +1170,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[19]_INST_0_i_2 
        (.I0(\doutb[31]_2 [19]),
         .I1(\doutb[31]_3 [19]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [19]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [19]),
         .O(\doutb[19]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[1]_INST_0 
        (.I0(\doutb[1]_INST_0_i_1_n_0 ),
         .I1(\doutb[1]_INST_0_i_2_n_0 ),
         .O(doutb[1]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[1]_INST_0_i_1 
        (.I0(DOBDO[1]),
         .I1(\doutb[31] [1]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [1]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [1]),
         .O(\doutb[1]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1215,24 +1195,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[1]_INST_0_i_2 
        (.I0(\doutb[31]_2 [1]),
         .I1(\doutb[31]_3 [1]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [1]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [1]),
         .O(\doutb[1]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[20]_INST_0 
        (.I0(\doutb[20]_INST_0_i_1_n_0 ),
         .I1(\doutb[20]_INST_0_i_2_n_0 ),
         .O(doutb[20]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[20]_INST_0_i_1 
        (.I0(DOBDO[20]),
         .I1(\doutb[31] [20]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [20]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [20]),
         .O(\doutb[20]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1240,24 +1220,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[20]_INST_0_i_2 
        (.I0(\doutb[31]_2 [20]),
         .I1(\doutb[31]_3 [20]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [20]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [20]),
         .O(\doutb[20]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[21]_INST_0 
        (.I0(\doutb[21]_INST_0_i_1_n_0 ),
         .I1(\doutb[21]_INST_0_i_2_n_0 ),
         .O(doutb[21]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[21]_INST_0_i_1 
        (.I0(DOBDO[21]),
         .I1(\doutb[31] [21]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [21]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [21]),
         .O(\doutb[21]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1265,24 +1245,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[21]_INST_0_i_2 
        (.I0(\doutb[31]_2 [21]),
         .I1(\doutb[31]_3 [21]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [21]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [21]),
         .O(\doutb[21]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[22]_INST_0 
        (.I0(\doutb[22]_INST_0_i_1_n_0 ),
         .I1(\doutb[22]_INST_0_i_2_n_0 ),
         .O(doutb[22]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[22]_INST_0_i_1 
        (.I0(DOBDO[22]),
         .I1(\doutb[31] [22]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [22]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [22]),
         .O(\doutb[22]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1290,24 +1270,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[22]_INST_0_i_2 
        (.I0(\doutb[31]_2 [22]),
         .I1(\doutb[31]_3 [22]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [22]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [22]),
         .O(\doutb[22]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[23]_INST_0 
        (.I0(\doutb[23]_INST_0_i_1_n_0 ),
         .I1(\doutb[23]_INST_0_i_2_n_0 ),
         .O(doutb[23]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[23]_INST_0_i_1 
        (.I0(DOBDO[23]),
         .I1(\doutb[31] [23]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [23]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [23]),
         .O(\doutb[23]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1315,24 +1295,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[23]_INST_0_i_2 
        (.I0(\doutb[31]_2 [23]),
         .I1(\doutb[31]_3 [23]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [23]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [23]),
         .O(\doutb[23]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[24]_INST_0 
        (.I0(\doutb[24]_INST_0_i_1_n_0 ),
         .I1(\doutb[24]_INST_0_i_2_n_0 ),
         .O(doutb[24]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[24]_INST_0_i_1 
        (.I0(DOBDO[24]),
         .I1(\doutb[31] [24]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [24]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [24]),
         .O(\doutb[24]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1340,24 +1320,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[24]_INST_0_i_2 
        (.I0(\doutb[31]_2 [24]),
         .I1(\doutb[31]_3 [24]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [24]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [24]),
         .O(\doutb[24]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[25]_INST_0 
        (.I0(\doutb[25]_INST_0_i_1_n_0 ),
         .I1(\doutb[25]_INST_0_i_2_n_0 ),
         .O(doutb[25]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[25]_INST_0_i_1 
        (.I0(DOBDO[25]),
         .I1(\doutb[31] [25]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [25]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [25]),
         .O(\doutb[25]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1365,24 +1345,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[25]_INST_0_i_2 
        (.I0(\doutb[31]_2 [25]),
         .I1(\doutb[31]_3 [25]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [25]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [25]),
         .O(\doutb[25]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[26]_INST_0 
        (.I0(\doutb[26]_INST_0_i_1_n_0 ),
         .I1(\doutb[26]_INST_0_i_2_n_0 ),
         .O(doutb[26]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[26]_INST_0_i_1 
        (.I0(DOBDO[26]),
         .I1(\doutb[31] [26]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [26]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [26]),
         .O(\doutb[26]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1390,24 +1370,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[26]_INST_0_i_2 
        (.I0(\doutb[31]_2 [26]),
         .I1(\doutb[31]_3 [26]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [26]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [26]),
         .O(\doutb[26]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[27]_INST_0 
        (.I0(\doutb[27]_INST_0_i_1_n_0 ),
         .I1(\doutb[27]_INST_0_i_2_n_0 ),
         .O(doutb[27]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[27]_INST_0_i_1 
        (.I0(DOBDO[27]),
         .I1(\doutb[31] [27]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [27]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [27]),
         .O(\doutb[27]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1415,24 +1395,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[27]_INST_0_i_2 
        (.I0(\doutb[31]_2 [27]),
         .I1(\doutb[31]_3 [27]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [27]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [27]),
         .O(\doutb[27]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[28]_INST_0 
        (.I0(\doutb[28]_INST_0_i_1_n_0 ),
         .I1(\doutb[28]_INST_0_i_2_n_0 ),
         .O(doutb[28]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[28]_INST_0_i_1 
        (.I0(DOBDO[28]),
         .I1(\doutb[31] [28]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [28]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [28]),
         .O(\doutb[28]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1440,24 +1420,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[28]_INST_0_i_2 
        (.I0(\doutb[31]_2 [28]),
         .I1(\doutb[31]_3 [28]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [28]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [28]),
         .O(\doutb[28]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[29]_INST_0 
        (.I0(\doutb[29]_INST_0_i_1_n_0 ),
         .I1(\doutb[29]_INST_0_i_2_n_0 ),
         .O(doutb[29]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[29]_INST_0_i_1 
        (.I0(DOBDO[29]),
         .I1(\doutb[31] [29]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [29]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [29]),
         .O(\doutb[29]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1465,24 +1445,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[29]_INST_0_i_2 
        (.I0(\doutb[31]_2 [29]),
         .I1(\doutb[31]_3 [29]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [29]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [29]),
         .O(\doutb[29]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[2]_INST_0 
        (.I0(\doutb[2]_INST_0_i_1_n_0 ),
         .I1(\doutb[2]_INST_0_i_2_n_0 ),
         .O(doutb[2]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[2]_INST_0_i_1 
        (.I0(DOBDO[2]),
         .I1(\doutb[31] [2]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [2]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [2]),
         .O(\doutb[2]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1490,24 +1470,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[2]_INST_0_i_2 
        (.I0(\doutb[31]_2 [2]),
         .I1(\doutb[31]_3 [2]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [2]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [2]),
         .O(\doutb[2]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[30]_INST_0 
        (.I0(\doutb[30]_INST_0_i_1_n_0 ),
         .I1(\doutb[30]_INST_0_i_2_n_0 ),
         .O(doutb[30]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[30]_INST_0_i_1 
        (.I0(DOBDO[30]),
         .I1(\doutb[31] [30]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [30]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [30]),
         .O(\doutb[30]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1515,24 +1495,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[30]_INST_0_i_2 
        (.I0(\doutb[31]_2 [30]),
         .I1(\doutb[31]_3 [30]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [30]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [30]),
         .O(\doutb[30]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[31]_INST_0 
        (.I0(\doutb[31]_INST_0_i_1_n_0 ),
         .I1(\doutb[31]_INST_0_i_2_n_0 ),
         .O(doutb[31]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[31]_INST_0_i_1 
        (.I0(DOBDO[31]),
         .I1(\doutb[31] [31]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [31]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [31]),
         .O(\doutb[31]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1540,24 +1520,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[31]_INST_0_i_2 
        (.I0(\doutb[31]_2 [31]),
         .I1(\doutb[31]_3 [31]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [31]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [31]),
         .O(\doutb[31]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[3]_INST_0 
        (.I0(\doutb[3]_INST_0_i_1_n_0 ),
         .I1(\doutb[3]_INST_0_i_2_n_0 ),
         .O(doutb[3]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[3]_INST_0_i_1 
        (.I0(DOBDO[3]),
         .I1(\doutb[31] [3]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [3]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [3]),
         .O(\doutb[3]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1565,24 +1545,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[3]_INST_0_i_2 
        (.I0(\doutb[31]_2 [3]),
         .I1(\doutb[31]_3 [3]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [3]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [3]),
         .O(\doutb[3]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[4]_INST_0 
        (.I0(\doutb[4]_INST_0_i_1_n_0 ),
         .I1(\doutb[4]_INST_0_i_2_n_0 ),
         .O(doutb[4]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[4]_INST_0_i_1 
        (.I0(DOBDO[4]),
         .I1(\doutb[31] [4]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [4]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [4]),
         .O(\doutb[4]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1590,24 +1570,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[4]_INST_0_i_2 
        (.I0(\doutb[31]_2 [4]),
         .I1(\doutb[31]_3 [4]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [4]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [4]),
         .O(\doutb[4]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[5]_INST_0 
        (.I0(\doutb[5]_INST_0_i_1_n_0 ),
         .I1(\doutb[5]_INST_0_i_2_n_0 ),
         .O(doutb[5]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[5]_INST_0_i_1 
        (.I0(DOBDO[5]),
         .I1(\doutb[31] [5]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [5]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [5]),
         .O(\doutb[5]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1615,24 +1595,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[5]_INST_0_i_2 
        (.I0(\doutb[31]_2 [5]),
         .I1(\doutb[31]_3 [5]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [5]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [5]),
         .O(\doutb[5]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[6]_INST_0 
        (.I0(\doutb[6]_INST_0_i_1_n_0 ),
         .I1(\doutb[6]_INST_0_i_2_n_0 ),
         .O(doutb[6]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[6]_INST_0_i_1 
        (.I0(DOBDO[6]),
         .I1(\doutb[31] [6]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [6]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [6]),
         .O(\doutb[6]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1640,24 +1620,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[6]_INST_0_i_2 
        (.I0(\doutb[31]_2 [6]),
         .I1(\doutb[31]_3 [6]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [6]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [6]),
         .O(\doutb[6]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[7]_INST_0 
        (.I0(\doutb[7]_INST_0_i_1_n_0 ),
         .I1(\doutb[7]_INST_0_i_2_n_0 ),
         .O(doutb[7]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[7]_INST_0_i_1 
        (.I0(DOBDO[7]),
         .I1(\doutb[31] [7]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [7]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [7]),
         .O(\doutb[7]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1665,24 +1645,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[7]_INST_0_i_2 
        (.I0(\doutb[31]_2 [7]),
         .I1(\doutb[31]_3 [7]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [7]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [7]),
         .O(\doutb[7]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[8]_INST_0 
        (.I0(\doutb[8]_INST_0_i_1_n_0 ),
         .I1(\doutb[8]_INST_0_i_2_n_0 ),
         .O(doutb[8]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[8]_INST_0_i_1 
        (.I0(DOBDO[8]),
         .I1(\doutb[31] [8]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [8]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [8]),
         .O(\doutb[8]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1690,24 +1670,24 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[8]_INST_0_i_2 
        (.I0(\doutb[31]_2 [8]),
         .I1(\doutb[31]_3 [8]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [8]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [8]),
         .O(\doutb[8]_INST_0_i_2_n_0 ));
   MUXF7 \doutb[9]_INST_0 
        (.I0(\doutb[9]_INST_0_i_1_n_0 ),
         .I1(\doutb[9]_INST_0_i_2_n_0 ),
         .O(doutb[9]),
-        .S(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ));
+        .S(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
     \doutb[9]_INST_0_i_1 
        (.I0(DOBDO[9]),
         .I1(\doutb[31] [9]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_0 [9]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_1 [9]),
         .O(\doutb[9]_INST_0_i_1_n_0 ));
   LUT6 #(
@@ -1715,60 +1695,11 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
     \doutb[9]_INST_0_i_2 
        (.I0(\doutb[31]_2 [9]),
         .I1(\doutb[31]_3 [9]),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
+        .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
         .I3(\doutb[31]_4 [9]),
-        .I4(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
+        .I4(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .I5(\doutb[31]_5 [9]),
         .O(\doutb[9]_INST_0_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[0]_i_1 
-       (.I0(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
-        .I1(enb),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
-        .O(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[1]_i_1 
-       (.I0(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[1] ),
-        .I1(enb),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
-        .O(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[2]_i_1 
-       (.I0(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[2] ),
-        .I1(enb),
-        .I2(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ),
-        .O(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[2]_i_1_n_0 ));
-  FDRE #(
-    .INIT(1'b0)) 
-    \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg[0] 
-       (.C(clkb),
-        .CE(1'b1),
-        .D(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[0]_i_1_n_0 ),
-        .Q(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[0] ),
-        .R(1'b0));
-  FDRE #(
-    .INIT(1'b0)) 
-    \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg[1] 
-       (.C(clkb),
-        .CE(1'b1),
-        .D(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[1]_i_1_n_0 ),
-        .Q(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[1] ),
-        .R(1'b0));
-  FDRE #(
-    .INIT(1'b0)) 
-    \no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg[2] 
-       (.C(clkb),
-        .CE(1'b1),
-        .D(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1[2]_i_1_n_0 ),
-        .Q(\no_softecc_norm_sel2.has_mem_regs.WITHOUT_ECC_PIPE.ce_pri.sel_pipe_d1_reg_n_0_[2] ),
-        .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \no_softecc_sel_reg.ce_pri.sel_pipe[0]_i_1 
@@ -1776,7 +1707,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
         .I1(enb),
         .I2(\no_softecc_sel_reg.ce_pri.sel_pipe_reg_n_0_[0] ),
         .O(\no_softecc_sel_reg.ce_pri.sel_pipe[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \no_softecc_sel_reg.ce_pri.sel_pipe[1]_i_1 
@@ -1818,12 +1749,12 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_mux__parameterized0
         .R(1'b0));
 endmodule
 
+(* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width
    (douta_array,
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram ,
     POR_A,
-    POR_B,
-    ram_rstreg_b,
+    ram_rstram_b,
     \SAFETY_CKT_GEN.POR_B_reg_0 ,
     ENB_I,
     ENB_I_0,
@@ -1843,7 +1774,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width
     clkb,
     clka,
     ena,
-    enb,
     addra,
     addrb,
     dina,
@@ -1851,13 +1781,13 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width
     wea,
     web,
     \SAFETY_CKT_GEN.ENA_WITH_REG.ENA_dly_reg_D_reg_0 ,
-    \SAFETY_CKT_GEN.ENB_WITH_REG.ENB_dly_reg_D_reg_0 ,
-    rstb);
+    \SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_D_reg_0 ,
+    rstb,
+    enb);
   output [7:0]douta_array;
   output [31:0]\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram ;
   output POR_A;
-  output POR_B;
-  output ram_rstreg_b;
+  output ram_rstram_b;
   output \SAFETY_CKT_GEN.POR_B_reg_0 ;
   output ENB_I;
   output ENB_I_0;
@@ -1877,7 +1807,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width
   input clkb;
   input clka;
   input ena;
-  input enb;
   input [14:0]addra;
   input [12:0]addrb;
   input [7:0]dina;
@@ -1885,8 +1814,9 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width
   input [0:0]wea;
   input [3:0]web;
   input \SAFETY_CKT_GEN.ENA_WITH_REG.ENA_dly_reg_D_reg_0 ;
-  input \SAFETY_CKT_GEN.ENB_WITH_REG.ENB_dly_reg_D_reg_0 ;
+  input \SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_D_reg_0 ;
   input rstb;
+  input enb;
 
   wire [31:0]\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram ;
   wire ENA_I;
@@ -1904,13 +1834,13 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width
   wire ENB_I_3;
   wire ENB_I_4;
   wire ENB_I_5;
-  wire ENB_dly_reg_D;
+  wire ENB_dly_D;
   wire POR_A;
   wire POR_B;
   wire [4:0]RSTA_SHFT_REG;
   wire [4:0]RSTB_SHFT_REG;
   wire \SAFETY_CKT_GEN.ENA_WITH_REG.ENA_dly_reg_D_reg_0 ;
-  wire \SAFETY_CKT_GEN.ENB_WITH_REG.ENB_dly_reg_D_reg_0 ;
+  wire \SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_D_reg_0 ;
   wire \SAFETY_CKT_GEN.POR_A_reg_0 ;
   wire \SAFETY_CKT_GEN.POR_B_reg_0 ;
   wire \SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[3]_srl3_n_0 ;
@@ -1926,7 +1856,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width
   wire enb;
   wire p_1_out;
   wire p_3_out;
-  wire ram_rstreg_b;
+  wire ram_rstram_b;
   wire rstb;
   wire [0:0]wea;
   wire [3:0]web;
@@ -1941,11 +1871,11 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width
         .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
-    \SAFETY_CKT_GEN.ENB_WITH_REG.ENB_dly_reg_D_reg 
+    \SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_D_reg 
        (.C(clkb),
         .CE(1'b1),
-        .D(\SAFETY_CKT_GEN.ENB_WITH_REG.ENB_dly_reg_D_reg_0 ),
-        .Q(ENB_dly_reg_D),
+        .D(\SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_D_reg_0 ),
+        .Q(ENB_dly_D),
         .R(1'b0));
   LUT2 #(
     .INIT(4'h6)) 
@@ -2042,16 +1972,15 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width
         .R(1'b0));
   LUT4 #(
     .INIT(16'hFFFE)) 
-    \SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_WITH_REG.RSTB_BUSY_i_1 
+    \SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_NO_REG.RSTB_BUSY_i_1 
        (.I0(POR_B),
         .I1(rstb),
-        .I2(\SAFETY_CKT_GEN.ENB_WITH_REG.ENB_dly_reg_D_reg_0 ),
-        .I3(ENB_dly_reg_D),
+        .I2(\SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_D_reg_0 ),
+        .I3(ENB_dly_D),
         .O(\SAFETY_CKT_GEN.POR_B_reg_0 ));
   design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper \prim_noinit.ram 
        (.\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_0 (\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram ),
         .\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1 (POR_A),
-        .\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2 (POR_B),
         .ENA_I(ENA_I),
         .ENA_I_10(ENA_I_10),
         .ENA_I_11(ENA_I_11),
@@ -2067,7 +1996,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width
         .ENB_I_3(ENB_I_3),
         .ENB_I_4(ENB_I_4),
         .ENB_I_5(ENB_I_5),
-        .ENB_dly_reg_D(ENB_dly_reg_D),
+        .ENB_dly_D(ENB_dly_D),
+        .POR_B(POR_B),
         .addra(addra),
         .addrb(addrb),
         .clka(clka),
@@ -2077,7 +2007,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width
         .douta_array(douta_array),
         .ena(ena),
         .enb(enb),
-        .ram_rstreg_b(ram_rstreg_b),
+        .ram_rstram_b(ram_rstram_b),
         .rstb(rstb),
         .wea(wea),
         .web(web));
@@ -2092,10 +2022,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized0
     ENA_I,
     ENB_I,
     ena,
-    enb,
     POR_A,
-    POR_B,
-    ram_rstreg_b,
+    ram_rstram_b,
     addra,
     addrb,
     dina,
@@ -2109,10 +2037,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized0
   input ENA_I;
   input ENB_I;
   input ena;
-  input enb;
   input POR_A;
-  input POR_B;
-  input ram_rstreg_b;
+  input ram_rstram_b;
   input [11:0]addra;
   input [9:0]addrb;
   input [7:0]dina;
@@ -2124,7 +2050,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized0
   wire ENA_I;
   wire ENB_I;
   wire POR_A;
-  wire POR_B;
   wire [11:0]addra;
   wire [9:0]addrb;
   wire clka;
@@ -2133,8 +2058,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized0
   wire [31:0]dinb;
   wire [7:0]douta_array;
   wire ena;
-  wire enb;
-  wire ram_rstreg_b;
+  wire ram_rstram_b;
   wire [0:0]wea;
   wire [3:0]web;
 
@@ -2143,7 +2067,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized0
         .ENA_I(ENA_I),
         .ENB_I(ENB_I),
         .POR_A(POR_A),
-        .POR_B(POR_B),
         .addra(addra),
         .addrb(addrb),
         .clka(clka),
@@ -2152,8 +2075,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized0
         .dinb(dinb),
         .douta_array(douta_array),
         .ena(ena),
-        .enb(enb),
-        .ram_rstreg_b(ram_rstreg_b),
+        .ram_rstram_b(ram_rstram_b),
         .wea(wea),
         .web(web));
 endmodule
@@ -2167,10 +2089,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized1
     ENA_I,
     ENB_I,
     ena,
-    enb,
     POR_A,
-    POR_B,
-    ram_rstreg_b,
+    ram_rstram_b,
     addra,
     addrb,
     dina,
@@ -2184,10 +2104,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized1
   input ENA_I;
   input ENB_I;
   input ena;
-  input enb;
   input POR_A;
-  input POR_B;
-  input ram_rstreg_b;
+  input ram_rstram_b;
   input [11:0]addra;
   input [9:0]addrb;
   input [7:0]dina;
@@ -2199,7 +2117,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized1
   wire ENA_I;
   wire ENB_I;
   wire POR_A;
-  wire POR_B;
   wire [11:0]addra;
   wire [9:0]addrb;
   wire clka;
@@ -2208,8 +2125,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized1
   wire [31:0]dinb;
   wire [7:0]douta_array;
   wire ena;
-  wire enb;
-  wire ram_rstreg_b;
+  wire ram_rstram_b;
   wire [0:0]wea;
   wire [3:0]web;
 
@@ -2218,7 +2134,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized1
         .ENA_I(ENA_I),
         .ENB_I(ENB_I),
         .POR_A(POR_A),
-        .POR_B(POR_B),
         .addra(addra),
         .addrb(addrb),
         .clka(clka),
@@ -2227,8 +2142,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized1
         .dinb(dinb),
         .douta_array(douta_array),
         .ena(ena),
-        .enb(enb),
-        .ram_rstreg_b(ram_rstreg_b),
+        .ram_rstram_b(ram_rstram_b),
         .wea(wea),
         .web(web));
 endmodule
@@ -2242,10 +2156,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized2
     ENA_I,
     ENB_I,
     ena,
-    enb,
     POR_A,
-    POR_B,
-    ram_rstreg_b,
+    ram_rstram_b,
     addra,
     addrb,
     dina,
@@ -2259,10 +2171,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized2
   input ENA_I;
   input ENB_I;
   input ena;
-  input enb;
   input POR_A;
-  input POR_B;
-  input ram_rstreg_b;
+  input ram_rstram_b;
   input [11:0]addra;
   input [9:0]addrb;
   input [7:0]dina;
@@ -2274,7 +2184,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized2
   wire ENA_I;
   wire ENB_I;
   wire POR_A;
-  wire POR_B;
   wire [11:0]addra;
   wire [9:0]addrb;
   wire clka;
@@ -2283,8 +2192,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized2
   wire [31:0]dinb;
   wire [7:0]douta_array;
   wire ena;
-  wire enb;
-  wire ram_rstreg_b;
+  wire ram_rstram_b;
   wire [0:0]wea;
   wire [3:0]web;
 
@@ -2293,7 +2201,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized2
         .ENA_I(ENA_I),
         .ENB_I(ENB_I),
         .POR_A(POR_A),
-        .POR_B(POR_B),
         .addra(addra),
         .addrb(addrb),
         .clka(clka),
@@ -2302,8 +2209,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized2
         .dinb(dinb),
         .douta_array(douta_array),
         .ena(ena),
-        .enb(enb),
-        .ram_rstreg_b(ram_rstreg_b),
+        .ram_rstram_b(ram_rstram_b),
         .wea(wea),
         .web(web));
 endmodule
@@ -2317,10 +2223,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized3
     ENA_I,
     ENB_I,
     ena,
-    enb,
     POR_A,
-    POR_B,
-    ram_rstreg_b,
+    ram_rstram_b,
     addra,
     addrb,
     dina,
@@ -2334,10 +2238,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized3
   input ENA_I;
   input ENB_I;
   input ena;
-  input enb;
   input POR_A;
-  input POR_B;
-  input ram_rstreg_b;
+  input ram_rstram_b;
   input [11:0]addra;
   input [9:0]addrb;
   input [7:0]dina;
@@ -2349,7 +2251,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized3
   wire ENA_I;
   wire ENB_I;
   wire POR_A;
-  wire POR_B;
   wire [11:0]addra;
   wire [9:0]addrb;
   wire clka;
@@ -2358,8 +2259,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized3
   wire [31:0]dinb;
   wire [7:0]douta_array;
   wire ena;
-  wire enb;
-  wire ram_rstreg_b;
+  wire ram_rstram_b;
   wire [0:0]wea;
   wire [3:0]web;
 
@@ -2368,7 +2268,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized3
         .ENA_I(ENA_I),
         .ENB_I(ENB_I),
         .POR_A(POR_A),
-        .POR_B(POR_B),
         .addra(addra),
         .addrb(addrb),
         .clka(clka),
@@ -2377,8 +2276,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized3
         .dinb(dinb),
         .douta_array(douta_array),
         .ena(ena),
-        .enb(enb),
-        .ram_rstreg_b(ram_rstreg_b),
+        .ram_rstram_b(ram_rstram_b),
         .wea(wea),
         .web(web));
 endmodule
@@ -2392,10 +2290,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized4
     ENA_I,
     ENB_I,
     ena,
-    enb,
     POR_A,
-    POR_B,
-    ram_rstreg_b,
+    ram_rstram_b,
     addra,
     addrb,
     dina,
@@ -2409,10 +2305,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized4
   input ENA_I;
   input ENB_I;
   input ena;
-  input enb;
   input POR_A;
-  input POR_B;
-  input ram_rstreg_b;
+  input ram_rstram_b;
   input [11:0]addra;
   input [9:0]addrb;
   input [7:0]dina;
@@ -2424,7 +2318,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized4
   wire ENA_I;
   wire ENB_I;
   wire POR_A;
-  wire POR_B;
   wire [11:0]addra;
   wire [9:0]addrb;
   wire clka;
@@ -2433,8 +2326,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized4
   wire [31:0]dinb;
   wire [7:0]douta_array;
   wire ena;
-  wire enb;
-  wire ram_rstreg_b;
+  wire ram_rstram_b;
   wire [0:0]wea;
   wire [3:0]web;
 
@@ -2443,7 +2335,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized4
         .ENA_I(ENA_I),
         .ENB_I(ENB_I),
         .POR_A(POR_A),
-        .POR_B(POR_B),
         .addra(addra),
         .addrb(addrb),
         .clka(clka),
@@ -2452,8 +2343,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized4
         .dinb(dinb),
         .douta_array(douta_array),
         .ena(ena),
-        .enb(enb),
-        .ram_rstreg_b(ram_rstreg_b),
+        .ram_rstram_b(ram_rstram_b),
         .wea(wea),
         .web(web));
 endmodule
@@ -2467,10 +2357,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized5
     ENA_I,
     ENB_I,
     ena,
-    enb,
     POR_A,
-    POR_B,
-    ram_rstreg_b,
+    ram_rstram_b,
     addra,
     addrb,
     dina,
@@ -2484,10 +2372,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized5
   input ENA_I;
   input ENB_I;
   input ena;
-  input enb;
   input POR_A;
-  input POR_B;
-  input ram_rstreg_b;
+  input ram_rstram_b;
   input [11:0]addra;
   input [9:0]addrb;
   input [7:0]dina;
@@ -2499,7 +2385,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized5
   wire ENA_I;
   wire ENB_I;
   wire POR_A;
-  wire POR_B;
   wire [11:0]addra;
   wire [9:0]addrb;
   wire clka;
@@ -2508,8 +2393,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized5
   wire [31:0]dinb;
   wire [7:0]douta_array;
   wire ena;
-  wire enb;
-  wire ram_rstreg_b;
+  wire ram_rstram_b;
   wire [0:0]wea;
   wire [3:0]web;
 
@@ -2518,7 +2402,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized5
         .ENA_I(ENA_I),
         .ENB_I(ENB_I),
         .POR_A(POR_A),
-        .POR_B(POR_B),
         .addra(addra),
         .addrb(addrb),
         .clka(clka),
@@ -2527,8 +2410,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized5
         .dinb(dinb),
         .douta_array(douta_array),
         .ena(ena),
-        .enb(enb),
-        .ram_rstreg_b(ram_rstreg_b),
+        .ram_rstram_b(ram_rstram_b),
         .wea(wea),
         .web(web));
 endmodule
@@ -2538,7 +2420,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized6
    (douta_array,
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram ,
     \SAFETY_CKT_GEN.ENA_WITH_REG.ENA_dly_reg_reg_0 ,
-    \SAFETY_CKT_GEN.ENB_WITH_REG.ENB_dly_reg_reg_0 ,
+    \SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_reg_0 ,
     rsta_busy,
     rstb_busy,
     clka,
@@ -2546,10 +2428,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized6
     ENA_I,
     ENB_I,
     ena,
-    enb,
     POR_A,
-    POR_B,
-    ram_rstreg_b,
+    ram_rstram_b,
     addra,
     addrb,
     dina,
@@ -2557,11 +2437,11 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized6
     wea,
     web,
     \SAFETY_CKT_GEN.RSTA_BUSY_WITH_REG.RSTA_BUSY_reg_0 ,
-    \SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_WITH_REG.RSTB_BUSY_reg_0 );
+    \SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_NO_REG.RSTB_BUSY_reg_0 );
   output [7:0]douta_array;
   output [31:0]\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram ;
   output \SAFETY_CKT_GEN.ENA_WITH_REG.ENA_dly_reg_reg_0 ;
-  output \SAFETY_CKT_GEN.ENB_WITH_REG.ENB_dly_reg_reg_0 ;
+  output \SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_reg_0 ;
   output rsta_busy;
   output rstb_busy;
   input clka;
@@ -2569,10 +2449,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized6
   input ENA_I;
   input ENB_I;
   input ena;
-  input enb;
   input POR_A;
-  input POR_B;
-  input ram_rstreg_b;
+  input ram_rstram_b;
   input [11:0]addra;
   input [9:0]addrb;
   input [7:0]dina;
@@ -2580,17 +2458,16 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized6
   input [0:0]wea;
   input [3:0]web;
   input \SAFETY_CKT_GEN.RSTA_BUSY_WITH_REG.RSTA_BUSY_reg_0 ;
-  input \SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_WITH_REG.RSTB_BUSY_reg_0 ;
+  input \SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_NO_REG.RSTB_BUSY_reg_0 ;
 
   wire [31:0]\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram ;
   wire ENA_I;
   wire ENB_I;
   wire POR_A;
-  wire POR_B;
   wire \SAFETY_CKT_GEN.ENA_WITH_REG.ENA_dly_reg_reg_0 ;
-  wire \SAFETY_CKT_GEN.ENB_WITH_REG.ENB_dly_reg_reg_0 ;
+  wire \SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_reg_0 ;
   wire \SAFETY_CKT_GEN.RSTA_BUSY_WITH_REG.RSTA_BUSY_reg_0 ;
-  wire \SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_WITH_REG.RSTB_BUSY_reg_0 ;
+  wire \SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_NO_REG.RSTB_BUSY_reg_0 ;
   wire [11:0]addra;
   wire [9:0]addrb;
   wire clka;
@@ -2599,8 +2476,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized6
   wire [31:0]dinb;
   wire [7:0]douta_array;
   wire ena;
-  wire enb;
-  wire ram_rstreg_b;
+  wire ram_rstram_b;
   wire rsta_busy;
   wire rstb_busy;
   wire [0:0]wea;
@@ -2616,11 +2492,11 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized6
         .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
-    \SAFETY_CKT_GEN.ENB_WITH_REG.ENB_dly_reg_reg 
+    \SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_reg 
        (.C(clkb),
         .CE(1'b1),
-        .D(ram_rstreg_b),
-        .Q(\SAFETY_CKT_GEN.ENB_WITH_REG.ENB_dly_reg_reg_0 ),
+        .D(ram_rstram_b),
+        .Q(\SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_reg_0 ),
         .R(1'b0));
   FDRE \SAFETY_CKT_GEN.RSTA_BUSY_WITH_REG.RSTA_BUSY_reg 
        (.C(clka),
@@ -2628,10 +2504,10 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized6
         .D(\SAFETY_CKT_GEN.RSTA_BUSY_WITH_REG.RSTA_BUSY_reg_0 ),
         .Q(rsta_busy),
         .R(1'b0));
-  FDRE \SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_WITH_REG.RSTB_BUSY_reg 
+  FDRE \SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_NO_REG.RSTB_BUSY_reg 
        (.C(clkb),
         .CE(1'b1),
-        .D(\SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_WITH_REG.RSTB_BUSY_reg_0 ),
+        .D(\SAFETY_CKT_GEN.nSPRAM_RST_BUSY.RSTB_BUSY_NO_REG.RSTB_BUSY_reg_0 ),
         .Q(rstb_busy),
         .R(1'b0));
   design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized6 \prim_noinit.ram 
@@ -2639,7 +2515,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized6
         .ENA_I(ENA_I),
         .ENB_I(ENB_I),
         .POR_A(POR_A),
-        .POR_B(POR_B),
         .addra(addra),
         .addrb(addrb),
         .clka(clka),
@@ -2648,16 +2523,16 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_width__parameterized6
         .dinb(dinb),
         .douta_array(douta_array),
         .ena(ena),
-        .enb(enb),
-        .ram_rstreg_b(ram_rstreg_b),
+        .ram_rstram_b(ram_rstram_b),
         .wea(wea),
         .web(web));
 endmodule
 
+(* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper" *) 
 module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper
    (douta_array,
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_0 ,
-    ram_rstreg_b,
+    ram_rstram_b,
     ENB_I,
     ENB_I_0,
     ENB_I_1,
@@ -2675,9 +2550,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper
     clka,
     clkb,
     ena,
-    enb,
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1 ,
-    \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2 ,
     addra,
     addrb,
     dina,
@@ -2685,11 +2558,13 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper
     wea,
     web,
     rstb,
-    ENB_dly_reg_D,
+    POR_B,
+    ENB_dly_D,
+    enb,
     ENA_dly_reg_D);
   output [7:0]douta_array;
   output [31:0]\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_0 ;
-  output ram_rstreg_b;
+  output ram_rstram_b;
   output ENB_I;
   output ENB_I_0;
   output ENB_I_1;
@@ -2707,9 +2582,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper
   input clka;
   input clkb;
   input ena;
-  input enb;
   input \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1 ;
-  input \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2 ;
   input [14:0]addra;
   input [12:0]addrb;
   input [7:0]dina;
@@ -2717,12 +2590,13 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper
   input [0:0]wea;
   input [3:0]web;
   input rstb;
-  input ENB_dly_reg_D;
+  input POR_B;
+  input ENB_dly_D;
+  input enb;
   input ENA_dly_reg_D;
 
   wire [31:0]\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_0 ;
   wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1 ;
-  wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2 ;
   wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_71 ;
   wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_72 ;
   wire \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_n_73 ;
@@ -2745,7 +2619,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper
   wire ENB_I_4;
   wire ENB_I_5;
   wire ENB_I_6;
-  wire ENB_dly_reg_D;
+  wire ENB_dly_D;
+  wire POR_B;
   wire [14:0]addra;
   wire [12:0]addrb;
   wire clka;
@@ -2755,7 +2630,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper
   wire [7:0]douta_array;
   wire ena;
   wire enb;
-  wire ram_rstreg_b;
+  wire ram_rstram_b;
   wire rstb;
   wire [0:0]wea;
   wire [3:0]web;
@@ -2771,7 +2646,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(1),
+    .DOB_REG(0),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -2970,11 +2845,11 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper
         .INJECTSBITERR(1'b0),
         .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(ena),
-        .REGCEB(enb),
+        .REGCEB(1'b0),
         .RSTRAMARSTRAM(\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1 ),
-        .RSTRAMB(\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2 ),
+        .RSTRAMB(ram_rstram_b),
         .RSTREGARSTREG(\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1 ),
-        .RSTREGB(ram_rstreg_b),
+        .RSTREGB(1'b0),
         .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({wea,wea,wea,wea}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,web}));
@@ -3053,7 +2928,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper
   LUT5 #(
     .INIT(32'hAAABAAAA)) 
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_2 
-       (.I0(ENB_dly_reg_D),
+       (.I0(ENB_dly_D),
         .I1(addrb[11]),
         .I2(addrb[10]),
         .I3(addrb[12]),
@@ -3062,7 +2937,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper
   LUT5 #(
     .INIT(32'hABAAAAAA)) 
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_2__0 
-       (.I0(ENB_dly_reg_D),
+       (.I0(ENB_dly_D),
         .I1(addrb[12]),
         .I2(addrb[11]),
         .I3(enb),
@@ -3071,7 +2946,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper
   LUT5 #(
     .INIT(32'hABAAAAAA)) 
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_2__1 
-       (.I0(ENB_dly_reg_D),
+       (.I0(ENB_dly_D),
         .I1(addrb[12]),
         .I2(addrb[10]),
         .I3(enb),
@@ -3080,7 +2955,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper
   LUT5 #(
     .INIT(32'hBAAAAAAA)) 
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_2__2 
-       (.I0(ENB_dly_reg_D),
+       (.I0(ENB_dly_D),
         .I1(addrb[12]),
         .I2(addrb[11]),
         .I3(addrb[10]),
@@ -3089,7 +2964,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper
   LUT5 #(
     .INIT(32'hABAAAAAA)) 
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_2__3 
-       (.I0(ENB_dly_reg_D),
+       (.I0(ENB_dly_D),
         .I1(addrb[11]),
         .I2(addrb[10]),
         .I3(addrb[12]),
@@ -3098,7 +2973,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper
   LUT5 #(
     .INIT(32'hBAAAAAAA)) 
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_2__4 
-       (.I0(ENB_dly_reg_D),
+       (.I0(ENB_dly_D),
         .I1(addrb[11]),
         .I2(enb),
         .I3(addrb[10]),
@@ -3107,7 +2982,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper
   LUT5 #(
     .INIT(32'hBAAAAAAA)) 
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_2__5 
-       (.I0(ENB_dly_reg_D),
+       (.I0(ENB_dly_D),
         .I1(addrb[10]),
         .I2(addrb[11]),
         .I3(enb),
@@ -3116,7 +2991,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper
   LUT5 #(
     .INIT(32'hEAAAAAAA)) 
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_2__6 
-       (.I0(ENB_dly_reg_D),
+       (.I0(ENB_dly_D),
         .I1(addrb[11]),
         .I2(addrb[10]),
         .I3(addrb[12]),
@@ -3126,8 +3001,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper
     .INIT(4'hE)) 
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_i_3 
        (.I0(rstb),
-        .I1(\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2 ),
-        .O(ram_rstreg_b));
+        .I1(POR_B),
+        .O(ram_rstram_b));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper" *) 
@@ -3139,10 +3014,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized0
     ENA_I,
     ENB_I,
     ena,
-    enb,
     POR_A,
-    POR_B,
-    ram_rstreg_b,
+    ram_rstram_b,
     addra,
     addrb,
     dina,
@@ -3156,10 +3029,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized0
   input ENA_I;
   input ENB_I;
   input ena;
-  input enb;
   input POR_A;
-  input POR_B;
-  input ram_rstreg_b;
+  input ram_rstram_b;
   input [11:0]addra;
   input [9:0]addrb;
   input [7:0]dina;
@@ -3176,7 +3047,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized0
   wire ENA_I;
   wire ENB_I;
   wire POR_A;
-  wire POR_B;
   wire [11:0]addra;
   wire [9:0]addrb;
   wire clka;
@@ -3185,8 +3055,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized0
   wire [31:0]dinb;
   wire [7:0]douta_array;
   wire ena;
-  wire enb;
-  wire ram_rstreg_b;
+  wire ram_rstram_b;
   wire [0:0]wea;
   wire [3:0]web;
   wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
@@ -3201,7 +3070,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized0
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(1),
+    .DOB_REG(0),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -3400,11 +3269,11 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized0
         .INJECTSBITERR(1'b0),
         .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(ena),
-        .REGCEB(enb),
+        .REGCEB(1'b0),
         .RSTRAMARSTRAM(POR_A),
-        .RSTRAMB(POR_B),
+        .RSTRAMB(ram_rstram_b),
         .RSTREGARSTREG(POR_A),
-        .RSTREGB(ram_rstreg_b),
+        .RSTREGB(1'b0),
         .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({wea,wea,wea,wea}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,web}));
@@ -3419,10 +3288,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized1
     ENA_I,
     ENB_I,
     ena,
-    enb,
     POR_A,
-    POR_B,
-    ram_rstreg_b,
+    ram_rstram_b,
     addra,
     addrb,
     dina,
@@ -3436,10 +3303,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized1
   input ENA_I;
   input ENB_I;
   input ena;
-  input enb;
   input POR_A;
-  input POR_B;
-  input ram_rstreg_b;
+  input ram_rstram_b;
   input [11:0]addra;
   input [9:0]addrb;
   input [7:0]dina;
@@ -3456,7 +3321,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized1
   wire ENA_I;
   wire ENB_I;
   wire POR_A;
-  wire POR_B;
   wire [11:0]addra;
   wire [9:0]addrb;
   wire clka;
@@ -3465,8 +3329,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized1
   wire [31:0]dinb;
   wire [7:0]douta_array;
   wire ena;
-  wire enb;
-  wire ram_rstreg_b;
+  wire ram_rstram_b;
   wire [0:0]wea;
   wire [3:0]web;
   wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
@@ -3481,7 +3344,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized1
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(1),
+    .DOB_REG(0),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -3680,11 +3543,11 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized1
         .INJECTSBITERR(1'b0),
         .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(ena),
-        .REGCEB(enb),
+        .REGCEB(1'b0),
         .RSTRAMARSTRAM(POR_A),
-        .RSTRAMB(POR_B),
+        .RSTRAMB(ram_rstram_b),
         .RSTREGARSTREG(POR_A),
-        .RSTREGB(ram_rstreg_b),
+        .RSTREGB(1'b0),
         .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({wea,wea,wea,wea}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,web}));
@@ -3699,10 +3562,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized2
     ENA_I,
     ENB_I,
     ena,
-    enb,
     POR_A,
-    POR_B,
-    ram_rstreg_b,
+    ram_rstram_b,
     addra,
     addrb,
     dina,
@@ -3716,10 +3577,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized2
   input ENA_I;
   input ENB_I;
   input ena;
-  input enb;
   input POR_A;
-  input POR_B;
-  input ram_rstreg_b;
+  input ram_rstram_b;
   input [11:0]addra;
   input [9:0]addrb;
   input [7:0]dina;
@@ -3736,7 +3595,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized2
   wire ENA_I;
   wire ENB_I;
   wire POR_A;
-  wire POR_B;
   wire [11:0]addra;
   wire [9:0]addrb;
   wire clka;
@@ -3745,8 +3603,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized2
   wire [31:0]dinb;
   wire [7:0]douta_array;
   wire ena;
-  wire enb;
-  wire ram_rstreg_b;
+  wire ram_rstram_b;
   wire [0:0]wea;
   wire [3:0]web;
   wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
@@ -3761,7 +3618,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized2
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(1),
+    .DOB_REG(0),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -3960,11 +3817,11 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized2
         .INJECTSBITERR(1'b0),
         .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(ena),
-        .REGCEB(enb),
+        .REGCEB(1'b0),
         .RSTRAMARSTRAM(POR_A),
-        .RSTRAMB(POR_B),
+        .RSTRAMB(ram_rstram_b),
         .RSTREGARSTREG(POR_A),
-        .RSTREGB(ram_rstreg_b),
+        .RSTREGB(1'b0),
         .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({wea,wea,wea,wea}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,web}));
@@ -3979,10 +3836,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized3
     ENA_I,
     ENB_I,
     ena,
-    enb,
     POR_A,
-    POR_B,
-    ram_rstreg_b,
+    ram_rstram_b,
     addra,
     addrb,
     dina,
@@ -3996,10 +3851,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized3
   input ENA_I;
   input ENB_I;
   input ena;
-  input enb;
   input POR_A;
-  input POR_B;
-  input ram_rstreg_b;
+  input ram_rstram_b;
   input [11:0]addra;
   input [9:0]addrb;
   input [7:0]dina;
@@ -4016,7 +3869,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized3
   wire ENA_I;
   wire ENB_I;
   wire POR_A;
-  wire POR_B;
   wire [11:0]addra;
   wire [9:0]addrb;
   wire clka;
@@ -4025,8 +3877,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized3
   wire [31:0]dinb;
   wire [7:0]douta_array;
   wire ena;
-  wire enb;
-  wire ram_rstreg_b;
+  wire ram_rstram_b;
   wire [0:0]wea;
   wire [3:0]web;
   wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
@@ -4041,7 +3892,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized3
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(1),
+    .DOB_REG(0),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -4240,11 +4091,11 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized3
         .INJECTSBITERR(1'b0),
         .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(ena),
-        .REGCEB(enb),
+        .REGCEB(1'b0),
         .RSTRAMARSTRAM(POR_A),
-        .RSTRAMB(POR_B),
+        .RSTRAMB(ram_rstram_b),
         .RSTREGARSTREG(POR_A),
-        .RSTREGB(ram_rstreg_b),
+        .RSTREGB(1'b0),
         .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({wea,wea,wea,wea}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,web}));
@@ -4259,10 +4110,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized4
     ENA_I,
     ENB_I,
     ena,
-    enb,
     POR_A,
-    POR_B,
-    ram_rstreg_b,
+    ram_rstram_b,
     addra,
     addrb,
     dina,
@@ -4276,10 +4125,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized4
   input ENA_I;
   input ENB_I;
   input ena;
-  input enb;
   input POR_A;
-  input POR_B;
-  input ram_rstreg_b;
+  input ram_rstram_b;
   input [11:0]addra;
   input [9:0]addrb;
   input [7:0]dina;
@@ -4296,7 +4143,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized4
   wire ENA_I;
   wire ENB_I;
   wire POR_A;
-  wire POR_B;
   wire [11:0]addra;
   wire [9:0]addrb;
   wire clka;
@@ -4305,8 +4151,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized4
   wire [31:0]dinb;
   wire [7:0]douta_array;
   wire ena;
-  wire enb;
-  wire ram_rstreg_b;
+  wire ram_rstram_b;
   wire [0:0]wea;
   wire [3:0]web;
   wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
@@ -4321,7 +4166,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized4
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(1),
+    .DOB_REG(0),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -4520,11 +4365,11 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized4
         .INJECTSBITERR(1'b0),
         .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(ena),
-        .REGCEB(enb),
+        .REGCEB(1'b0),
         .RSTRAMARSTRAM(POR_A),
-        .RSTRAMB(POR_B),
+        .RSTRAMB(ram_rstram_b),
         .RSTREGARSTREG(POR_A),
-        .RSTREGB(ram_rstreg_b),
+        .RSTREGB(1'b0),
         .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({wea,wea,wea,wea}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,web}));
@@ -4539,10 +4384,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized5
     ENA_I,
     ENB_I,
     ena,
-    enb,
     POR_A,
-    POR_B,
-    ram_rstreg_b,
+    ram_rstram_b,
     addra,
     addrb,
     dina,
@@ -4556,10 +4399,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized5
   input ENA_I;
   input ENB_I;
   input ena;
-  input enb;
   input POR_A;
-  input POR_B;
-  input ram_rstreg_b;
+  input ram_rstram_b;
   input [11:0]addra;
   input [9:0]addrb;
   input [7:0]dina;
@@ -4576,7 +4417,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized5
   wire ENA_I;
   wire ENB_I;
   wire POR_A;
-  wire POR_B;
   wire [11:0]addra;
   wire [9:0]addrb;
   wire clka;
@@ -4585,8 +4425,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized5
   wire [31:0]dinb;
   wire [7:0]douta_array;
   wire ena;
-  wire enb;
-  wire ram_rstreg_b;
+  wire ram_rstram_b;
   wire [0:0]wea;
   wire [3:0]web;
   wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
@@ -4601,7 +4440,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized5
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(1),
+    .DOB_REG(0),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -4800,11 +4639,11 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized5
         .INJECTSBITERR(1'b0),
         .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(ena),
-        .REGCEB(enb),
+        .REGCEB(1'b0),
         .RSTRAMARSTRAM(POR_A),
-        .RSTRAMB(POR_B),
+        .RSTRAMB(ram_rstram_b),
         .RSTREGARSTREG(POR_A),
-        .RSTREGB(ram_rstreg_b),
+        .RSTREGB(1'b0),
         .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({wea,wea,wea,wea}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,web}));
@@ -4819,10 +4658,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized6
     ENA_I,
     ENB_I,
     ena,
-    enb,
     POR_A,
-    POR_B,
-    ram_rstreg_b,
+    ram_rstram_b,
     addra,
     addrb,
     dina,
@@ -4836,10 +4673,8 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized6
   input ENA_I;
   input ENB_I;
   input ena;
-  input enb;
   input POR_A;
-  input POR_B;
-  input ram_rstreg_b;
+  input ram_rstram_b;
   input [11:0]addra;
   input [9:0]addrb;
   input [7:0]dina;
@@ -4856,7 +4691,6 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized6
   wire ENA_I;
   wire ENB_I;
   wire POR_A;
-  wire POR_B;
   wire [11:0]addra;
   wire [9:0]addrb;
   wire clka;
@@ -4865,8 +4699,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized6
   wire [31:0]dinb;
   wire [7:0]douta_array;
   wire ena;
-  wire enb;
-  wire ram_rstreg_b;
+  wire ram_rstram_b;
   wire [0:0]wea;
   wire [3:0]web;
   wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
@@ -4881,7 +4714,7 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized6
   (* box_type = "PRIMITIVE" *) 
   RAMB36E1 #(
     .DOA_REG(1),
-    .DOB_REG(1),
+    .DOB_REG(0),
     .EN_ECC_READ("FALSE"),
     .EN_ECC_WRITE("FALSE"),
     .INITP_00(256'h0000000000000000000000000000000000000000000000000000000000000000),
@@ -5080,46 +4913,47 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_prim_wrapper__parameterized6
         .INJECTSBITERR(1'b0),
         .RDADDRECC(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_RDADDRECC_UNCONNECTED [8:0]),
         .REGCEAREGCE(ena),
-        .REGCEB(enb),
+        .REGCEB(1'b0),
         .RSTRAMARSTRAM(POR_A),
-        .RSTRAMB(POR_B),
+        .RSTRAMB(ram_rstram_b),
         .RSTREGARSTREG(POR_A),
-        .RSTREGB(ram_rstreg_b),
+        .RSTREGB(1'b0),
         .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({wea,wea,wea,wea}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,web}));
 endmodule
 
+(* ORIG_REF_NAME = "blk_mem_gen_top" *) 
 module design_1_blk_mem_gen_0_0_blk_mem_gen_top
    (douta,
-    doutb,
     rsta_busy,
     rstb_busy,
+    doutb,
     clkb,
     clka,
     ena,
-    enb,
     addra,
     addrb,
     dina,
     dinb,
     wea,
     web,
+    enb,
     rstb);
   output [7:0]douta;
-  output [31:0]doutb;
   output rsta_busy;
   output rstb_busy;
+  output [31:0]doutb;
   input clkb;
   input clka;
   input ena;
-  input enb;
   input [14:0]addra;
   input [12:0]addrb;
   input [7:0]dina;
   input [31:0]dinb;
   input [0:0]wea;
   input [3:0]web;
+  input enb;
   input rstb;
 
   wire [14:0]addra;
@@ -5166,7 +5000,7 @@ endmodule
 (* C_EN_SHUTDOWN_PIN = "0" *) (* C_EN_SLEEP_PIN = "0" *) (* C_EST_POWER_SUMMARY = "Estimated Power for IP     :     5.513449 mW" *) 
 (* C_FAMILY = "zynq" *) (* C_HAS_AXI_ID = "0" *) (* C_HAS_ENA = "1" *) 
 (* C_HAS_ENB = "1" *) (* C_HAS_INJECTERR = "0" *) (* C_HAS_MEM_OUTPUT_REGS_A = "1" *) 
-(* C_HAS_MEM_OUTPUT_REGS_B = "1" *) (* C_HAS_MUX_OUTPUT_REGS_A = "0" *) (* C_HAS_MUX_OUTPUT_REGS_B = "0" *) 
+(* C_HAS_MEM_OUTPUT_REGS_B = "0" *) (* C_HAS_MUX_OUTPUT_REGS_A = "0" *) (* C_HAS_MUX_OUTPUT_REGS_B = "0" *) 
 (* C_HAS_REGCEA = "0" *) (* C_HAS_REGCEB = "0" *) (* C_HAS_RSTA = "0" *) 
 (* C_HAS_RSTB = "1" *) (* C_HAS_SOFTECC_INPUT_REGS_A = "0" *) (* C_HAS_SOFTECC_OUTPUT_REGS_B = "0" *) 
 (* C_INITA_VAL = "0" *) (* C_INITB_VAL = "0" *) (* C_INIT_FILE = "NONE" *) 
@@ -5181,7 +5015,7 @@ endmodule
 (* C_WEA_WIDTH = "1" *) (* C_WEB_WIDTH = "4" *) (* C_WRITE_DEPTH_A = "32768" *) 
 (* C_WRITE_DEPTH_B = "8192" *) (* C_WRITE_MODE_A = "WRITE_FIRST" *) (* C_WRITE_MODE_B = "WRITE_FIRST" *) 
 (* C_WRITE_WIDTH_A = "8" *) (* C_WRITE_WIDTH_B = "32" *) (* C_XDEVICEFAMILY = "zynq" *) 
-(* downgradeipidentifiedwarnings = "yes" *) 
+(* ORIG_REF_NAME = "blk_mem_gen_v8_4_3" *) (* downgradeipidentifiedwarnings = "yes" *) 
 module design_1_blk_mem_gen_0_0_blk_mem_gen_v8_4_3
    (clka,
     rsta,
@@ -5427,36 +5261,37 @@ module design_1_blk_mem_gen_0_0_blk_mem_gen_v8_4_3
         .web(web));
 endmodule
 
+(* ORIG_REF_NAME = "blk_mem_gen_v8_4_3_synth" *) 
 module design_1_blk_mem_gen_0_0_blk_mem_gen_v8_4_3_synth
    (douta,
-    doutb,
     rsta_busy,
     rstb_busy,
+    doutb,
     clkb,
     clka,
     ena,
-    enb,
     addra,
     addrb,
     dina,
     dinb,
     wea,
     web,
+    enb,
     rstb);
   output [7:0]douta;
-  output [31:0]doutb;
   output rsta_busy;
   output rstb_busy;
+  output [31:0]doutb;
   input clkb;
   input clka;
   input ena;
-  input enb;
   input [14:0]addra;
   input [12:0]addrb;
   input [7:0]dina;
   input [31:0]dinb;
   input [0:0]wea;
   input [3:0]web;
+  input enb;
   input rstb;
 
   wire [14:0]addra;
